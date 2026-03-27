@@ -62,7 +62,7 @@ function Hero() {
           transition={{ duration: 0.8, delay: 1.5 }}
           className="mt-10 md:mt-16 flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-8"
         >
-          <button className="group relative bg-primary text-white w-full sm:w-auto px-12 md:px-16 py-5 md:py-6 text-[10px] font-black uppercase tracking-[0.3em] overflow-hidden transition-all hover:scale-105 active:scale-95">
+          <button className="group relative bg-primary text-white w-full sm:w-auto px-12 md:px-16 py-5 md:py-6 text-[10px] font-black uppercase tracking-[0.3em] overflow-hidden transition-all hover:scale-105 active:scale-95" onClick={() => window.dispatchEvent(new CustomEvent('navJump', { detail: { index: 6 } }))}>
             <span className="relative z-10">Solicitar Servicio</span>
             <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
           </button>
