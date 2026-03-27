@@ -17,14 +17,14 @@ const values = [
   {
     icon: <Award className="w-8 h-8 text-primary" />,
     title: "Excelencia Certificada",
-    desc: "Más de 15 años de trayectoria respaldan nuestra capacidad técnica y compromiso con el cliente."
+    desc: "Más de 20 años de trayectoria respaldan nuestra capacidad técnica y compromiso con el cliente."
   }
 ];
 
 function AboutSection() {
   return (
-    <section id="about" className="min-h-screen w-full bg-white overflow-y-auto flex flex-col">
-      <div className="flex-grow flex items-center py-20 md:py-32">
+    <section id="about" className="min-h-screen w-full bg-white overflow-y-auto flex flex-col pt-24 md:pt-32 pb-16 md:pb-24">
+      <div className="flex-grow flex items-center">
         <div className="max-w-full mx-auto px-6 md:px-16 w-full">
           <div className="flex flex-col lg:grid lg:grid-cols-12 gap-12 md:gap-20 items-center">
             
@@ -37,16 +37,16 @@ function AboutSection() {
             >
               <div>
                 <span className="text-primary tracking-[0.4em] font-black block mb-4 uppercase text-[10px] md:text-xs">Trayectoria y Visión</span>
-                <h2 className="font-display text-ink leading-[0.85] text-[clamp(2.5rem,10vw,7rem)] uppercase tracking-tighter italic">
+                <h2 className="font-display text-ink leading-[0.85] text-[clamp(2rem,6vw,5rem)] uppercase tracking-tighter italic">
                   INGENIERÍA QUE <br /> <span className="text-primary not-italic">IMPULSA EL PROGRESO</span>
                 </h2>
               </div>
               
               <div className="space-y-6 max-w-2xl">
                 <p className="text-secondary text-lg md:text-2xl font-medium leading-relaxed">
-                  Con más de 15 años de experiencia, <span className="text-ink font-bold border-b-2 border-primary/20">Electric Home</span> se ha consolidado como el aliado estratégico para la industria salvadoreña.
+                  Con más de 20 años de experiencia, <span className="text-ink font-bold border-b-2 border-primary/20">Electric Home</span> se ha consolidado como el aliado estratégico para la industria salvadoreña.
                 </p>
-                <p className="text-secondary text-base md:text-lg font-medium leading-relaxed opacity-80">
+                <p className="text-secondary text-base md:text-lg font-medium leading-relaxed">
                   Nuestra misión trasciende la simple instalación; diseñamos ecosistemas energéticos inteligentes, seguros y escalables. Nos especializamos en infraestructura crítica donde la precisión técnica no es opcional, sino el estándar mínimo.
                 </p>
               </div>
@@ -81,9 +81,9 @@ function AboutSection() {
               <div className="relative bg-white p-2 md:p-4 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] overflow-visible">
                 <div className="relative overflow-hidden aspect-[4/5]">
                   <img 
-                    src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=1200" 
+                    src="img/about.jpeg" 
                     alt="Ingeniería Industrial" 
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
+                    className="w-full h-full objec t-cover group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
                     referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-primary/10 mix-blend-multiply opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -91,7 +91,7 @@ function AboutSection() {
 
                 {/* Experience Badge - Responsive Positioning */}
                 <div className="absolute -bottom-6 -right-4 md:-bottom-10 md:-right-8 bg-ink p-6 md:p-10 text-white shadow-2xl z-10 border-l-4 border-primary">
-                  <div className="text-5xl md:text-7xl font-display leading-[0.8] mb-1 italic">15+</div>
+                  <div className="text-4xl md:text-6xl font-display leading-[0.8] mb-1 italic">20+</div>
                   <div className="text-[9px] md:text-[11px] font-black uppercase tracking-[0.4em] whitespace-nowrap opacity-60">Años de Peritaje</div>
                   <div className="h-[2px] w-full bg-primary mt-4 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
                 </div>

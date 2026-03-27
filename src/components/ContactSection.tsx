@@ -23,34 +23,34 @@ function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative min-h-screen w-full bg-white flex flex-col overflow-y-auto pt-24 md:pt-32">
+    <section id="contact" className="relative min-h-screen w-full bg-white flex flex-col overflow-y-auto pt-24 md:pt-32 pb-16 md:pb-24">
       <div className="flex-grow flex flex-col items-center justify-center px-6 md:px-20">
-        
+
         {/* Subtle Grid Background */}
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
-          style={{ backgroundImage: "radial-gradient(#050505 0.5px, transparent 0.5px)", backgroundSize: "32px 32px" }} 
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
+          style={{ backgroundImage: "radial-gradient(#050505 0.5px, transparent 0.5px)", backgroundSize: "32px 32px" }}
         />
 
         <div className="max-w-[1200px] w-full flex flex-col gap-12 md:gap-20 relative z-10">
-          
+
           {/* --- Header Section --- */}
           <div className="flex flex-col items-center text-center space-y-4">
-            <motion.span 
+            <motion.span
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               className="text-primary font-black uppercase tracking-[0.4em] text-[10px] sm:text-[11px]"
             >
               Gestión de Proyectos
             </motion.span>
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="font-display text-ink text-[clamp(2.5rem,8vw,5.5rem)] leading-[1] uppercase tracking-tighter"
+              className="font-display text-ink text-[clamp(2rem,5vw,4.5rem)] leading-[1] uppercase tracking-tighter"
             >
               Configura Tu <span className="text-primary italic">Cotización</span>
             </motion.h2>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
@@ -61,9 +61,9 @@ function ContactSection() {
           </div>
 
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
-            
+
             {/* --- Left Column: Info --- */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3 }}
@@ -81,15 +81,29 @@ function ContactSection() {
               ))}
 
               <div className="bg-surface p-8 border-l-4 border-primary mt-4">
-                <h4 className="text-ink font-display text-xl uppercase mb-3">Compromiso 360</h4>
-                <p className="text-secondary text-xs leading-relaxed">
-                  Todas nuestras propuestas incluyen diagnóstico preliminar, análisis de carga y cronograma de ejecución garantizado por ingenieros certificados.
-                </p>
+                <h4 className="text-ink font-display text-xl uppercase mb-4">Visita Técnica</h4>
+                <ul className="text-secondary text-xs leading-relaxed space-y-3 font-medium">
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary font-bold">✓</span> Visitas en zonas de San Salvador
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary font-bold">✓</span> Cotización del servicio a reparar o instalar
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary font-bold">✓</span> Evaluación de riesgos
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary font-bold">✓</span> Mediciones eléctricas
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary font-bold">✓</span> Revisión de documentación
+                  </li>
+                </ul>
               </div>
             </motion.div>
 
             {/* --- Right Column: The Form --- */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
@@ -107,7 +121,7 @@ function ContactSection() {
                   ].map((field) => (
                     <div key={field.id} className="flex flex-col gap-2">
                       <label className="text-[8px] font-black uppercase tracking-widest text-secondary">{field.label}</label>
-                      <input 
+                      <input
                         required={field.id !== "company"}
                         type={field.type}
                         className="bg-transparent border-b border-ink/10 py-3 focus:outline-none focus:border-primary transition-all text-sm font-medium text-ink placeholder:text-secondary/30"
@@ -120,7 +134,7 @@ function ContactSection() {
 
                   <div className="flex flex-col gap-2 md:col-span-2">
                     <label className="text-[8px] font-black uppercase tracking-widest text-secondary">Tipo de Requerimiento *</label>
-                    <select 
+                    <select
                       required
                       className="bg-transparent border-b border-ink/10 py-3 focus:outline-none focus:border-primary transition-all text-sm font-medium text-ink appearance-none cursor-pointer"
                       value={formState.serviceType}
@@ -137,15 +151,14 @@ function ContactSection() {
                     <label className="text-[8px] font-black uppercase tracking-widest text-secondary">Prioridad</label>
                     <div className="flex gap-4 pt-1">
                       {["Normal", "Alta", "Crítica"].map((lvl) => (
-                        <button 
+                        <button
                           key={lvl}
                           type="button"
                           onClick={() => setFormState({ ...formState, priority: lvl.toLowerCase() })}
-                          className={`flex-1 py-3 text-[9px] font-black uppercase tracking-widest transition-all ${
-                            formState.priority === lvl.toLowerCase() 
-                              ? "bg-ink text-white" 
+                          className={`flex-1 py-3 text-[9px] font-black uppercase tracking-widest transition-all ${formState.priority === lvl.toLowerCase()
+                              ? "bg-ink text-white"
                               : "bg-surface text-secondary hover:bg-ink/5"
-                          }`}
+                            }`}
                         >
                           {lvl}
                         </button>
@@ -155,7 +168,7 @@ function ContactSection() {
 
                   <div className="flex flex-col gap-2 md:col-span-2">
                     <label className="text-[8px] font-black uppercase tracking-widest text-secondary">Detalles del Requerimiento *</label>
-                    <textarea 
+                    <textarea
                       required
                       rows={3}
                       className="bg-transparent border-b border-ink/10 py-3 focus:outline-none focus:border-primary transition-all text-sm font-medium text-ink resize-none placeholder:text-secondary/30"
@@ -165,7 +178,7 @@ function ContactSection() {
                     />
                   </div>
 
-                  <button 
+                  <button
                     type="submit"
                     className="bg-ink text-white py-6 md:col-span-2 text-[10px] font-black uppercase tracking-[0.4em] hover:bg-primary transition-all shadow-xl flex items-center justify-center gap-4 group"
                   >
@@ -181,17 +194,17 @@ function ContactSection() {
 
         <AnimatePresence>
           {isSubmitted && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 z-[3000] flex items-center justify-center p-6"
             >
-              <motion.div 
+              <motion.div
                 initial={{ backdropFilter: "blur(0px)", opacity: 0 }}
                 animate={{ backdropFilter: "blur(32px)", opacity: 1 }}
                 exit={{ backdropFilter: "blur(0px)", opacity: 0 }}
-                className="absolute inset-0 bg-ink/80" 
+                className="absolute inset-0 bg-ink/80"
               />
 
               <motion.div
@@ -221,7 +234,7 @@ function ContactSection() {
                   <span className="text-[10px] font-mono text-ink font-bold">REQ-{Math.random().toString(36).substring(7).toUpperCase()}</span>
                 </div>
 
-                <button 
+                <button
                   onClick={() => setIsSubmitted(false)}
                   className="w-full bg-ink text-white py-5 text-[10px] font-black uppercase tracking-[0.4em] hover:bg-primary transition-all active:scale-95 shadow-xl"
                 >

@@ -39,7 +39,7 @@ function Hero() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display text-white tracking-tighter leading-[0.9] uppercase text-[clamp(2.5rem,10vw,7rem)]"
+          className="font-display text-white tracking-tighter leading-[0.9] uppercase text-[clamp(2rem,6vw,5.5rem)]"
         >
           POTENCIA <br />
           <span className="text-primary italic">GARANTIZADA</span>

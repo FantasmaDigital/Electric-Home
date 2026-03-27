@@ -4,8 +4,8 @@ import Footer from "./shared/Footer";
 
 function InstallationsSection() {
   return (
-    <section id="installations" className="min-h-screen w-full bg-surface overflow-y-auto flex flex-col">
-      <div className="flex-grow flex items-center py-24 md:py-20">
+    <section id="installations" className="min-h-screen w-full bg-surface overflow-y-auto flex flex-col pt-24 md:pt-32 pb-16 md:pb-24">
+      <div className="flex-grow flex items-center pb-20">
         <div className="max-w-full mx-auto px-8 md:px-16 grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center w-full">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -14,12 +14,12 @@ function InstallationsSection() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="md:col-span-6 order-2 md:order-1"
           >
-            <span className="text-primary tracking-[0.4em] font-black block mb-4 uppercase text-[10px]">Infraestructura</span>
-            <h2 className="font-display text-ink leading-[0.9] text-[clamp(2.5rem,8vw,6rem)] uppercase tracking-tighter mb-6 md:mb-8">
-              Instalaciones <br /> <span className="text-primary italic">Industriales</span>
+            <span className="text-primary tracking-[0.4em] font-black block mb-4 uppercase text-[10px]">Servicio Completo</span>
+            <h2 className="font-display text-ink leading-[0.9] text-[clamp(2rem,6vw,4.5rem)] uppercase tracking-tighter mb-6 md:mb-8">
+              Electricista <br /> <span className="text-primary italic">a Domicilio</span>
             </h2>
             <p className="text-secondary text-sm md:text-lg font-medium leading-relaxed max-w-lg mb-8 md:mb-10">
-              Ejecutamos proyectos eléctricos de gran envergadura para plantas industriales y naves comerciales. Especializados en tableros de media tensión, sistemas de puesta a tierra y gestión ante entes reguladores.
+              Brindamos servicios de iluminación, pruebas e inspección, alarmas, cajas de fusibles e instalaciones industriales, residenciales y comerciales garantizando <strong>¡Los más altos estándares!</strong>
             </p>
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -58,8 +58,8 @@ function InstallationsSection() {
                 referrerPolicy="no-referrer"
                 loading="lazy"
               />
-              <div className="absolute -bottom-4 md:-bottom-6 -left-4 md:-left-6 bg-black px-4 md:px-8 py-2 md:py-4 text-xs md:text-sm font-black uppercase tracking-[0.4em] text-white shadow-2xl">
-                POTENCIA SIN LÍMITES
+              <div className="absolute -bottom-4 md:-bottom-6 -left-4 md:-left-6 bg-ink px-4 md:px-8 py-2 md:py-4 text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-white shadow-2xl">
+                ¡Los más altos estándares!
               </div>
             </div>
           </motion.div>

@@ -1,28 +1,34 @@
 import React, { memo } from "react";
 import { motion } from "motion/react";
-import { Instagram, Facebook, Linkedin, ArrowUpRight } from "lucide-react";
+import { Instagram, Facebook, ArrowUpRight } from "lucide-react";
+
+const TikTok = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+  </svg>
+);
 
 const platforms = [
   { 
     name: "Instagram", 
-    handle: "@electrichome_sv", 
+    handle: "@electrichome4756", 
     icon: Instagram, 
     color: "from-[#833ab4] via-[#fd1d1d] to-[#fcb045]",
-    description: "Proyectos en tiempo real y nuestro día a día."
+    link: "https://www.instagram.com/electrichome4756?igsh=NnBrNDd3dmp0cHg1"
   },
   { 
-    name: "LinkedIn", 
-    handle: "Electric Home Industrial", 
-    icon: Linkedin, 
-    color: "from-[#0077b5] to-[#00a0dc]",
-    description: "Actualizaciones técnicas y red profesional."
+    name: "TikTok", 
+    handle: "@electric_home2005", 
+    icon: TikTok, 
+    color: "from-[#000000] to-[#25F4EE]",
+    link: "https://www.tiktok.com/@electric_home2005?_r=1&_t=ZS-952lB9P7ZfY"
   },
   { 
     name: "Facebook", 
-    handle: "Electric Home El Salvador", 
+    handle: "@electrichomesv", 
     icon: Facebook, 
     color: "from-[#1877f2] to-[#3b5998]",
-    description: "Comunidad y soporte directo."
+    link: "http://facebook.com/electrichomesv/"
   }
 ];
 
@@ -35,7 +41,7 @@ function SocialPromotion() {
           <div className="space-y-8">
             <div>
               <span className="text-primary tracking-[0.4em] font-black block mb-4 uppercase text-[10px]">Conectividad</span>
-              <h2 className="font-display text-ink leading-[0.9] text-[clamp(2.5rem,8vw,5rem)] uppercase tracking-tighter">
+              <h2 className="font-display text-ink leading-[0.9] text-[clamp(2rem,5vw,4rem)] uppercase tracking-tighter">
                 Únete a nuestra <br />
                 <span className="text-primary italic">Comunidad Digital</span>
               </h2>
@@ -49,7 +55,9 @@ function SocialPromotion() {
             {platforms.map((platform, idx) => (
               <motion.a
                 key={platform.name}
-                href="#"
+                href={platform.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ x: 10 }}
                 className="group relative bg-white p-8 flex items-center justify-between overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-ink/5"
               >

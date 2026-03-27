@@ -7,7 +7,7 @@ interface NavbarProps {
 }
 
 export default function Navbar({ x }: NavbarProps) {
-  const navItems = ["Inicio", "Nosotros", "Instalaciones", "Especializados", "Mantenimiento", "Galería", "Contacto"];
+  const navItems = ["Inicio", "Nosotros", "Especializados", "Instalaciones", "Mantenimiento", "Galería", "Contacto"];
   
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -49,12 +49,12 @@ export default function Navbar({ x }: NavbarProps) {
         </div>
         
         {/* Desktop Menu */}
-        <div className="hidden lg:flex gap-8 xl:gap-12 items-center">
+        <div className="hidden xl:flex gap-8 xl:gap-12 items-center">
           {navItems.map((item, index) => (
             <button
               key={item}
               onClick={() => scrollToSection(index)}
-              className={`font-sans tracking-[0.2em] font-black uppercase text-xs xl:text-sm transition-all relative cursor-pointer ${
+              className={`font-sans tracking-[0.1em] font-black uppercase text-xs transition-all relative cursor-pointer ${
                 activeIndex === index ? "text-ink" : "text-secondary hover:text-ink"
               }`}
             >
@@ -76,7 +76,7 @@ export default function Navbar({ x }: NavbarProps) {
           
           {/* Mobile Hamburger Toggle */}
           <button 
-            className={`lg:hidden p-2 rounded-full transition-all duration-300 ${
+            className={`xl:hidden p-2 rounded-full transition-all duration-300 ${
               isMobileMenuOpen ? "bg-primary text-white shadow-lg rotate-180" : "bg-ink/5 text-ink hover:text-primary rotate-0"
             }`}
             onClick={toggleMobileMenu}
@@ -94,7 +94,7 @@ export default function Navbar({ x }: NavbarProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[2900] bg-white/95 backdrop-blur-2xl flex flex-col px-6 pb-8 pt-24 lg:hidden"
+            className="fixed inset-0 z-[2900] bg-white/95 backdrop-blur-2xl flex flex-col px-6 pb-8 pt-24 xl:hidden"
           >
             <div className="flex-grow flex flex-col justify-start pt-4 gap-4 overflow-y-auto custom-scrollbar pr-2">
               {navItems.map((item, index) => (

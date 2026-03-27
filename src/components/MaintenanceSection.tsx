@@ -97,8 +97,8 @@ function MaintenanceSection({ x }: MaintenanceSectionProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section id="maintenance" className="min-h-screen w-full bg-surface relative overflow-y-auto flex flex-col">
-      <div className="flex-grow flex items-center py-24 md:py-20 lg:py-32">
+    <section id="maintenance" className="min-h-screen w-full bg-surface relative overflow-y-auto flex flex-col pt-24 md:pt-32 pb-16 md:pb-24">
+      <div className="flex-grow flex items-center">
         <div className="max-w-full mx-auto px-6 md:px-16 text-center w-full">
           <motion.span
             initial={{ opacity: 0 }}
@@ -114,7 +114,7 @@ function MaintenanceSection({ x }: MaintenanceSectionProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-[clamp(2.5rem,10vw,8rem)] font-display text-ink uppercase leading-[0.82] tracking-tighter mb-12 md:mb-20"
+            className="text-[clamp(2rem,6vw,5rem)] font-display text-ink uppercase leading-[0.82] tracking-tighter mb-12 md:mb-20"
           >
             Mantenimiento <br /> <span className="text-primary italic">Correctivo & Preventivo</span>
           </motion.h2>

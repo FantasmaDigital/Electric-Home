@@ -25,8 +25,8 @@ export default function App() {
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [showHint, setShowHint] = useState(true);
   const [hoverSide, setHoverSide] = useState<"left" | "right" | null>(null);
-  
-  const sectionNames = useMemo(() => ["01 / INICIO", "02 / NOSOTROS", "03 / INSTALACIONES", "04 / ESPECIALIZADOS", "05 / MANTENIMIENTO", "06 / GALERÍA", "07 / CONTACTO"], []);
+
+  const sectionNames = useMemo(() => ["01 / INICIO", "02 / NOSOTROS", "03 / ESPECIALIZADOS", "04 / INSTALACIONES", "05 / MANTENIMIENTO", "06 / GALERÍA", "07 / CONTACTO"], []);
 
   const x = useMotionValue(0);
   const springX = useSpring(x, { stiffness: 400, damping: 45, mass: 1.2, restDelta: 0.001 });
@@ -36,8 +36,8 @@ export default function App() {
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
   const lastScrollTime = useRef(0);
-  const PAUSE_DURATION = 400; 
-  const WHEEL_THRESHOLD = 50; 
+  const PAUSE_DURATION = 400;
+  const WHEEL_THRESHOLD = 50;
   const SWIPE_THRESHOLD = 40;
 
   useEffect(() => {
@@ -73,7 +73,7 @@ export default function App() {
         e.preventDefault();
         return;
       }
-      
+
       const sections = document.querySelectorAll('.scroll-section');
       const activeSection = sections[currentIndex] as HTMLElement;
 
@@ -108,7 +108,7 @@ export default function App() {
 
     const handleTouchMove = (e: TouchEvent) => {
       if (modalContent || isTransitioning) return;
-      
+
       const touchEndX = e.touches[0].clientX;
       const touchEndY = e.touches[0].clientY;
       const deltaX = touchStartX.current - touchEndX;
@@ -121,7 +121,7 @@ export default function App() {
       if (activeSection) {
         if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
           if (e.cancelable) e.preventDefault(); // Stop vertical scroll while swiping horizontally
-          
+
           if (Math.abs(deltaX) > SWIPE_THRESHOLD && now - lastScrollTime.current >= PAUSE_DURATION) {
             if (deltaX > 0 && currentIndex < sections.length - 1) {
               moveToSection(currentIndex + 1);
@@ -133,7 +133,7 @@ export default function App() {
         }
         // Let vertical scroll natively happen inside activeSection (overflow-y: auto).
       }
-      
+
       // Update starting positions only if we are swiping horizontally, or always? 
       // Actually tracking X and Y continuously is fine, but it might cause drift.
       // Easiest is to keep updating touchStartX/Y.
@@ -149,7 +149,7 @@ export default function App() {
     window.addEventListener("touchmove", handleTouchMove, { passive: false });
     window.addEventListener("navJump", handleNavJump);
     window.addEventListener("openGlobalModal", handleOpenGlobalModal);
-    
+
     return () => {
       window.removeEventListener("wheel", handleWheel);
       window.removeEventListener("touchstart", handleTouchStart);
@@ -172,9 +172,9 @@ export default function App() {
       <SocialSidebar isHero={currentIndex === 0} />
       {/* Left Edge Navigation Zone */}
       <div className="fixed inset-y-0 left-0 w-24 z-50 group cursor-none hidden lg:block"
-           onMouseEnter={() => setHoverSide("left")}
-           onMouseLeave={() => setHoverSide(null)}
-           onClick={() => handleManualMove("prev")}
+        onMouseEnter={() => setHoverSide("left")}
+        onMouseLeave={() => setHoverSide(null)}
+        onClick={() => handleManualMove("prev")}
       >
         <div className={`absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent transition-opacity duration-500 pointer-events-none ${hoverSide === "left" && currentIndex > 0 ? "opacity-100" : "opacity-0"}`} />
         <AnimatePresence>
@@ -201,10 +201,10 @@ export default function App() {
             className="fixed bottom-12 left-1/2 -translate-x-1/2 z-[100] bg-ink/90 backdrop-blur-md px-6 py-3 rounded-full border border-white/10 shadow-2xl flex items-center gap-4 text-white"
           >
             <div className="flex items-center gap-2">
-              <ChevronLeft size={16} className="animate-pulse text-primary hidden md:block" onClick={() => handleManualMove("prev")}/>
+              <ChevronLeft size={16} className="animate-pulse text-primary hidden md:block" onClick={() => handleManualMove("prev")} />
               <MousePointer2 size={16} className="text-secondary opacity-50 hidden md:block" />
-              <ChevronRight size={16} className="animate-pulse text-primary hidden md:block" onClick={() => handleManualMove("next")}/>
-              
+              <ChevronRight size={16} className="animate-pulse text-primary hidden md:block" onClick={() => handleManualMove("next")} />
+
               <motion.div
                 animate={{ x: [-10, 10, -10] }}
                 transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
@@ -224,7 +224,7 @@ export default function App() {
       </AnimatePresence>
 
       {/* Progress Bar */}
-      <motion.div 
+      <motion.div
         style={{ scaleX, transformOrigin: "left" }}
         className="fixed top-0 left-0 right-0 h-1 bg-primary z-[100]"
       />
@@ -252,7 +252,7 @@ export default function App() {
                 animate={{ opacity: 0.2, y: 0 }}
                 exit={{ opacity: 0, y: -30 }}
                 transition={{ duration: 0.4, delay: 0.2 }}
-                className="font-display text-white text-[clamp(2rem,6vw,5rem)] tracking-[0.2em] md:tracking-[0.5em] flex flex-col items-center text-center"
+                className="font-display text-white text-[clamp(1.5rem,5vw,4rem)] tracking-[0.2em] md:tracking-[0.5em] flex flex-col items-center text-center"
               >
                 <span className="text-secondary text-[10px] md:text-sm font-black mb-2 tracking-[0.8em]">TRANSICIÓN</span>
                 {sectionNames[currentIndex]}
@@ -263,8 +263,8 @@ export default function App() {
       </AnimatePresence>
 
       <Navbar x={springX} />
-      
-       <AnimatePresence>
+
+      <AnimatePresence>
         {/* --- Global Service Modal --- */}
         {modalContent && (
           <motion.div
@@ -274,12 +274,12 @@ export default function App() {
             className="fixed inset-0 z-[1000] flex items-center justify-center"
           >
             {/* Backdrop with extreme blur */}
-            <motion.div 
+            <motion.div
               initial={{ backdropFilter: "blur(0px)", opacity: 0 }}
               animate={{ backdropFilter: "blur(24px)", opacity: 1 }}
               exit={{ backdropFilter: "blur(0px)", opacity: 0 }}
               onClick={() => setModalContent(null)}
-              className="absolute inset-0 bg-ink/60 cursor-pointer" 
+              className="absolute inset-0 bg-ink/60 cursor-pointer"
             />
 
             <motion.div
@@ -289,29 +289,30 @@ export default function App() {
               transition={{ type: "spring", damping: 30, stiffness: 200 }}
               className="relative w-full max-w-full bg-white shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] flex flex-col lg:flex-row overflow-hidden rounded-none h-screen border border-white/10"
             >
-              <button 
+              <button
                 onClick={() => setModalContent(null)}
-                className="absolute top-6 right-6 z-50 p-3 bg-white/10 backdrop-blur-md text-ink hover:bg-primary hover:text-white transition-all active:scale-90 rounded-full border border-ink/5"
+                className="absolute top-24 md:top-32 right-6 md:right-10 lg:right-16 z-50 p-3 bg-ink/5 backdrop-blur-md text-ink hover:bg-primary hover:text-white transition-all active:scale-90 rounded-full border border-ink/10"
               >
                 <X className="w-5 h-5" />
               </button>
 
               {/* Left: Image with dramatic overlay */}
               <div className="lg:w-1/2 relative bg-surface overflow-hidden group">
-                <img 
-                  src={modalContent.image} 
+                <img
+                  src={modalContent.image}
                   alt={modalContent.title}
                   className="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-ink/20 to-transparent" />
                 <div className="absolute bottom-10 left-10">
-                  <span className="text-white/40 font-black text-8xl uppercase tracking-tighter opacity-20 select-none">DATA</span>
+                  <span className="text-white/40 font-black text-6xl md:text-7xl uppercase tracking-tighter opacity-20 select-none">DATA</span>
                 </div>
               </div>
 
               {/* Right: Content */}
-              <div className="lg:w-1/2 p-8 md:p-14 lg:p-20 flex flex-col justify-center space-y-10 relative bg-white">
+              <div className="lg:w-1/2 relative bg-white h-full flex flex-col pt-24 md:pt-32">
+                <div className="flex-1 overflow-y-auto px-8 md:px-14 lg:px-20 pb-16 md:pb-24 flex flex-col space-y-8 md:space-y-10 custom-scrollbar">
                 <div className="space-y-4">
                   <div className="flex items-center gap-4">
                     <div className="w-8 h-[2px] bg-primary" />
@@ -319,7 +320,7 @@ export default function App() {
                       {modalContent.subtitle}
                     </span>
                   </div>
-                  <h2 className="font-display text-ink leading-[0.85] text-[clamp(2.5rem,5vw,5rem)] uppercase tracking-tight">
+                  <h2 className="font-display text-ink leading-[0.85] text-[clamp(2rem,4vw,4rem)] uppercase tracking-tight">
                     {modalContent.title.split(' ').map((word: string, i: number) => (
                       <span key={i} className={i === modalContent.title.split(' ').length - 1 ? "text-primary italic" : ""}>
                         {word}{' '}
@@ -341,13 +342,14 @@ export default function App() {
                   ))}
                 </div>
 
-                <button 
+                <button
                   onClick={() => setModalContent(null)}
                   className="w-fit bg-ink text-white px-10 py-5 text-[10px] font-black uppercase tracking-[0.4em] hover:bg-primary transition-all active:scale-95 shadow-xl"
                 >
                   Cerrar Detalles
                 </button>
               </div>
+            </div>
             </motion.div>
           </motion.div>
         )}
@@ -402,8 +404,8 @@ export default function App() {
         )} */}
       </AnimatePresence>
 
-      <motion.div 
-        animate={{ 
+      <motion.div
+        animate={{
           scale: isTransitioning ? 0.94 : 1,
           filter: isTransitioning ? "blur(2px)" : "blur(0px)",
         }}
@@ -418,10 +420,10 @@ export default function App() {
             <AboutSection />
           </div>
           <div className="scroll-section">
-            <InstallationsSection />
+            <SpecializedSection />
           </div>
           <div className="scroll-section">
-            <SpecializedSection />
+            <InstallationsSection />
           </div>
           <div className="scroll-section">
             <MaintenanceSection x={x} />

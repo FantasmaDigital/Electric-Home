@@ -1,12 +1,17 @@
 import { motion } from "motion/react";
-import { Facebook, Instagram, Linkedin, MessageCircle, Mail, Phone } from "lucide-react";
+import { Facebook, Instagram, Mail, Phone } from "lucide-react";
 import React, { memo } from "react";
 
+const TikTok = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+  </svg>
+);
+
 const socialLinks = [
-  { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
-  { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
-  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: MessageCircle, href: "https://wa.me/50322334455", label: "WhatsApp" },
+  { icon: Facebook, href: "http://facebook.com/electrichomesv/", label: "Facebook" },
+  { icon: Instagram, href: "https://www.instagram.com/electrichome4756?igsh=NnBrNDd3dmp0cHg1", label: "Instagram" },
+  { icon: TikTok, href: "https://www.tiktok.com/@electric_home2005?_r=1&_t=ZS-952lB9P7ZfY", label: "TikTok" },
 ];
 
 function Footer() {
@@ -21,7 +26,7 @@ function Footer() {
               <img src="logo.png" alt="Electric Home" className="w-auto h-40 justify-center items-center flex mx-auto md:mx-0 md:h-24" loading="lazy" />
             </div>
             <p className="text-secondary text-sm font-medium leading-relaxed">
-              Líderes en ingeniería eléctrica industrial y residencial. Soluciones de alta fidelidad respaldadas por certificaciones internacionales.
+              Líderes en ingeniería eléctrica industrial y residencial. Soluciones de alta fidelidad.
             </p>
           </div>
 
@@ -72,13 +77,6 @@ function Footer() {
             <span className="text-[9px] font-black text-ink hover:text-primary transition-colors cursor-pointer uppercase tracking-[0.4em]">Términos de Servicio</span>
             <span className="text-[9px] font-black text-ink hover:text-primary transition-colors cursor-pointer uppercase tracking-[0.4em]">Privacidad</span>
           </div>
-        </div>
-
-        {/* Author Credit */}
-        <div className="mt-12 text-center">
-            <span className="text-[8px] font-black text-secondary/30 uppercase tracking-[0.6em] hover:text-primary transition-colors cursor-pointer">
-              Powered by Fantasma Digital
-            </span>
         </div>
       </div>
     </footer>

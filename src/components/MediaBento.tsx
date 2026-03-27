@@ -6,48 +6,48 @@ import SocialPromotion from "./shared/SocialPromotion";
 const mediaItems = [
   {
     type: "image",
-    url: "https://images.unsplash.com/photo-1581092335878-2d9ff86ca2bf?auto=format&fit=crop&q=80&w=800",
-    title: "Panel Industrial",
+    url: "img/services/1.png",
+    title: "Instalación de supresores y reguladores de voltaje",
     size: "md:col-span-2 md:row-span-2",
   },
   {
-    type: "video",
-    url: "https://assets.mixkit.co/videos/preview/mixkit-working-on-industrial-machine-4434-large.mp4",
-    title: "Maquinaria",
+    type: "image",
+    url: "img/services/2.png",
+    title: "Fabricación de hosing",
     size: "md:col-span-1 md:row-span-1",
   },
   {
     type: "image",
-    url: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=800",
-    title: "Instalación AES",
+    url: "img/services/4.png",
+    title: "Instalación de contadores eléctricos",
     size: "md:col-span-1 md:row-span-1",
   },
   {
     type: "image",
-    url: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&q=80&w=800",
-    title: "Dobladora",
+    url: "img/services/5.png",
+    title: "Instalación de dobladora industrial, sistema eléctrico y programación",
     size: "md:col-span-1 md:row-span-2",
   },
   {
     type: "image",
-    url: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=800",
-    title: "Generadores",
+    url: "img/services/3.jpg",
+    title: "Mantenimiento de motores industriales",
     size: "md:col-span-2 md:row-span-1",
   },
 ];
 
 function MediaBento() {
   return (
-    <section id="media" className="relative min-h-screen w-full bg-white flex flex-col">
-      
+    <section id="media" className="relative min-h-screen w-full bg-white flex flex-col pt-24 md:pt-32 pb-16 md:pb-24">
+
       {/* Subtle Warm Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-white to-primary/5 pointer-events-none" />
 
-      <div className="flex-grow flex flex-col items-center justify-center px-6 md:px-20 relative z-10 w-full py-24 md:py-20 lg:py-32">
+      <div className="flex-grow flex flex-col items-center justify-center px-6 md:px-20 relative z-10 w-full">
         <div className="max-w-full w-full flex flex-col">
           <div className="mb-8 md:mb-12">
             <span className="text-primary tracking-[0.4em] font-black block mb-4 uppercase text-[10px]">Nuestro Trabajo</span>
-            <h2 className="font-display text-ink leading-[0.9] text-[clamp(2.5rem,8vw,6rem)] uppercase tracking-tighter">
+            <h2 className="font-display text-ink leading-[0.9] text-[clamp(2rem,6vw,4.5rem)] uppercase tracking-tighter">
               La <span className="text-primary italic">Galería</span>
             </h2>
           </div>

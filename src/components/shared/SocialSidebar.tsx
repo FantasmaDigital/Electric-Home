@@ -1,12 +1,17 @@
 import React, { memo, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Facebook, Instagram, Linkedin, MessageCircle, Plus, X } from "lucide-react";
+import { Facebook, Instagram, Plus, X } from "lucide-react";
+
+const TikTok = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+  </svg>
+);
 
 const socialLinks = [
-  { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
-  { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
-  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: MessageCircle, href: "https://wa.me/50322334455", label: "WhatsApp" },
+  { icon: Facebook, href: "http://facebook.com/electrichomesv/", label: "Facebook" },
+  { icon: Instagram, href: "https://www.instagram.com/electrichome4756?igsh=NnBrNDd3dmp0cHg1", label: "Instagram" },
+  { icon: TikTok, href: "https://www.tiktok.com/@electric_home2005?_r=1&_t=ZS-952lB9P7ZfY", label: "TikTok" },
 ];
 
 function SocialSidebar({ isHero = false }: { isHero?: boolean }) {
@@ -27,10 +32,10 @@ function SocialSidebar({ isHero = false }: { isHero?: boolean }) {
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 1, duration: 0.8 }}
-      className="fixed z-[4000] flex flex-col items-center right-4 bottom-6 md:right-6 md:bottom-auto md:top-1/2 md:-translate-y-1/2"
+      className="fixed z-[4000] flex flex-col items-center right-4 bottom-6 xl:right-6 xl:bottom-auto xl:top-1/2 xl:-translate-y-1/2"
     >
       {/* Desktop View: Always Visible */}
-      <div className="hidden md:flex flex-col items-center gap-6">
+      <div className="hidden xl:flex flex-col items-center gap-6">
         <div className={`w-[1px] h-20 mb-2 transition-colors duration-500 ${lineColor}`} />
         {socialLinks.map((social, index) => (
           <motion.a
@@ -52,7 +57,7 @@ function SocialSidebar({ isHero = false }: { isHero?: boolean }) {
       </div>
 
       {/* Mobile View: Toggleable Menu */}
-      <div className="flex flex-col items-center md:hidden pointer-events-auto">
+      <div className="flex flex-col items-center xl:hidden pointer-events-auto">
         <AnimatePresence>
           {isOpen && (
             <motion.div
