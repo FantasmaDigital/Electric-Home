@@ -23,7 +23,7 @@ const values = [
 
 function AboutSection() {
   return (
-    <section id="about" className="min-h-screen w-full bg-white overflow-y-auto flex flex-col pt-24 md:pt-32 pb-16 md:pb-24">
+    <section id="about" className="min-h-[100dvh] w-full bg-white overflow-y-auto flex flex-col pt-24 md:pt-32 pb-16 md:pb-24">
       <div className="flex-grow flex items-center">
         <div className="max-w-full mx-auto px-6 md:px-16 w-full">
           <div className="flex flex-col lg:grid lg:grid-cols-12 gap-12 md:gap-20 items-center">
@@ -82,15 +82,15 @@ function AboutSection() {
                 <div className="relative overflow-hidden aspect-[4/5]">
                   <img 
                     src="img/about.jpeg" 
-                    alt="Ingeniería Industrial" 
-                    className="w-full h-full objec t-cover group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
+                    alt="Servicios de Electromecánica y Mantenimiento Industrial en El Salvador" 
+                    className="w-full h-full object-cover group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
                     referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-primary/10 mix-blend-multiply opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 </div>
 
                 {/* Experience Badge - Responsive Positioning */}
-                <div className="absolute -bottom-6 -right-4 md:-bottom-10 md:-right-8 bg-ink p-6 md:p-10 text-white shadow-2xl z-10 border-l-4 border-primary">
+                <div className="absolute -bottom-6 -right-2 md:-bottom-10 md:-right-8 bg-ink p-6 md:p-10 text-white shadow-2xl z-10 border-l-4 border-primary scale-90 sm:scale-100">
                   <div className="text-4xl md:text-6xl font-display leading-[0.8] mb-1 italic">20+</div>
                   <div className="text-[9px] md:text-[11px] font-black uppercase tracking-[0.4em] whitespace-nowrap opacity-60">Años de Peritaje</div>
                   <div className="h-[2px] w-full bg-primary mt-4 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />

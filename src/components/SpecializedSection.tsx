@@ -36,7 +36,7 @@ const features = [
 
 function SpecializedSection() {
   return (
-    <section id="specialized" className="relative min-h-screen w-full bg-white flex flex-col pt-24 md:pt-32 pb-16 md:pb-24">
+    <section id="specialized" className="relative min-h-[100dvh] w-full bg-white flex flex-col pt-24 md:pt-32 pb-16 md:pb-24">
       
       {/* Subtle Warm Gradient instead of grey surface */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-white pointer-events-none" />
@@ -89,7 +89,7 @@ function SpecializedSection() {
           </motion.div>
 
           {/* Grid Section */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 w-full auto-rows-[250px] md:auto-rows-[300px]">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 w-full auto-rows-[200px] sm:auto-rows-[250px] md:auto-rows-[300px]">
             
             {/* Image Box */}
             <motion.div 

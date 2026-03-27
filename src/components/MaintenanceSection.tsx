@@ -97,7 +97,7 @@ function MaintenanceSection({ x }: MaintenanceSectionProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section id="maintenance" className="min-h-screen w-full bg-surface relative overflow-y-auto flex flex-col pt-24 md:pt-32 pb-16 md:pb-24">
+    <section id="maintenance" className="min-h-[100dvh] w-full bg-surface relative overflow-y-auto flex flex-col pt-24 md:pt-32 pb-16 md:pb-24">
       <div className="flex-grow flex items-center">
         <div className="max-w-full mx-auto px-6 md:px-16 text-center w-full">
           <motion.span
@@ -135,22 +135,10 @@ function MaintenanceSection({ x }: MaintenanceSectionProps) {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => window.dispatchEvent(new CustomEvent('openGlobalModal', {
-                detail: {
-                  title: "Planes de Mantenimiento",
-                  subtitle: "Soporte Técnico 24/7",
-                  description: "Ofrecemos contratos de mantenimiento personalizados diseñados para minimizar el tiempo de inactividad. Incluimos visitas mensuales, informes técnicos de condición, atención de emergencias prioritarias y asesoría en la gestión de repuestos críticos para su planta de producción.",
-                  image: "https://images.unsplash.com/photo-1581092335878-2d9ff86ca2bf?auto=format&fit=crop&q=80&w=1200",
-                  stats: [
-                    { label: "Tiempo de Respuesta", value: "< 4 Horas" },
-                    { label: "Técnicos Certificados", value: "100%" },
-                    { label: "Planes", value: "Desde $199/mes" }
-                  ]
-                }
-              }))}
+              onClick={() => window.dispatchEvent(new CustomEvent('navJump', { detail: { index: 6 } }))}
               className="w-full sm:w-auto bg-primary text-white px-12 md:px-20 py-5 md:py-6 text-[10px] md:text-xs font-black uppercase tracking-[0.3em] transition-all shadow-2xl shadow-primary/30 mb-20"
             >
-              Ver Planes de Servicio
+              Solicitar Cotización
             </motion.button>
           </div>
         </div>

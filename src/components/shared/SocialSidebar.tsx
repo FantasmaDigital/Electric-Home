@@ -32,10 +32,10 @@ function SocialSidebar({ isHero = false }: { isHero?: boolean }) {
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 1, duration: 0.8 }}
-      className="fixed z-[4000] flex flex-col items-center right-4 bottom-6 xl:right-6 xl:bottom-auto xl:top-1/2 xl:-translate-y-1/2"
+      className="fixed z-[4000] flex flex-col items-center right-4 bottom-6 xl:right-6 xl:bottom-auto xl:top-1/2 xl:-translate-y-1/2 pointer-events-none"
     >
       {/* Desktop View: Always Visible */}
-      <div className="hidden xl:flex flex-col items-center gap-6">
+      <div className="hidden xl:flex flex-col items-center gap-6 pointer-events-auto">
         <div className={`w-[1px] h-20 mb-2 transition-colors duration-500 ${lineColor}`} />
         {socialLinks.map((social, index) => (
           <motion.a

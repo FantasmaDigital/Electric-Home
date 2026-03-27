@@ -3,7 +3,7 @@ import React, { memo } from "react";
 
 function Hero() {
   return (
-    <section id="experience" className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-ink">
+    <section id="experience" className="relative h-[100dvh] w-full flex items-center justify-center overflow-hidden bg-ink">
       {/* Background with overlay */}
       <div className="absolute inset-0 z-0">
         <motion.div
@@ -15,7 +15,7 @@ function Hero() {
         >
           <img
             src="https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&q=80&w=1920"
-            alt="Modern Sustainable Architecture"
+            alt="Especialistas en Proyectos de Ingeniería y Mantenimiento Eléctrico en El Salvador"
             className="w-full h-full object-cover grayscale"
             referrerPolicy="no-referrer"
           />
@@ -39,7 +39,7 @@ function Hero() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display text-white tracking-tighter leading-[0.9] uppercase text-[clamp(2rem,6vw,5.5rem)]"
+          className="font-display text-white tracking-tighter leading-[0.9] uppercase text-[clamp(2.5rem,10vw,5.5rem)]"
         >
           POTENCIA <br />
           <span className="text-primary italic">GARANTIZADA</span>
@@ -72,10 +72,10 @@ function Hero() {
               detail: {
                 title: "Potencia Garantizada",
                 subtitle: "Ingeniería Eléctrica Industrial",
-                description: "Somos especialistas en instalaciones eléctricas industriales y comerciales. Desde la gestión de nuevas conexiones ante AES, hasta la instalación de maquinaria industrial, mantenimiento de motores y generadores, y sistemas de protección de voltaje. Contamos con técnicos certificados y años de experiencia en el sector.",
+                description: "Somos especialistas en instalaciones eléctricas industriales y comerciales. Desde la gestión de nuevas conexiones, hasta la instalación de maquinaria industrial, mantenimiento de motores y generadores, y sistemas de protección de voltaje. Contamos con técnicos certificados y años de experiencia en el sector.",
                 image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=1920",
                 stats: [
-                  { label: "Años de experiencia", value: "15+" },
+                  { label: "Años de experiencia", value: "20+" },
                   { label: "Proyectos completados", value: "500+" },
                   { label: "Tiempo de respuesta", value: "24h" }
                 ]

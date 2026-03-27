@@ -120,7 +120,7 @@ export default function App() {
 
       if (activeSection) {
         if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
-          if (e.cancelable) e.preventDefault(); // Stop vertical scroll while swiping horizontally
+          if (e.cancelable) e.preventDefault(); 
 
           if (Math.abs(deltaX) > SWIPE_THRESHOLD && now - lastScrollTime.current >= PAUSE_DURATION) {
             if (deltaX > 0 && currentIndex < sections.length - 1) {
@@ -131,14 +131,7 @@ export default function App() {
             lastScrollTime.current = now;
           }
         }
-        // Let vertical scroll natively happen inside activeSection (overflow-y: auto).
       }
-
-      // Update starting positions only if we are swiping horizontally, or always? 
-      // Actually tracking X and Y continuously is fine, but it might cause drift.
-      // Easiest is to keep updating touchStartX/Y.
-      touchStartX.current = touchEndX;
-      touchStartY.current = touchEndY;
     };
 
     const handleNavJump = (e: any) => moveToSection(e.detail.index);
@@ -168,7 +161,7 @@ export default function App() {
   }, [currentIndex, moveToSection, sectionNames.length]);
 
   return (
-    <main className="relative bg-white h-screen w-screen overflow-hidden font-display cursor-default">
+    <main className="relative bg-white h-[100dvh] w-screen overflow-hidden font-display cursor-default">
       <SocialSidebar isHero={currentIndex === 0} />
       {/* Left Edge Navigation Zone */}
       <div className="fixed inset-y-0 left-0 w-24 z-50 group cursor-none hidden lg:block"
