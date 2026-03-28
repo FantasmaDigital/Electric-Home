@@ -1,40 +1,103 @@
 import { motion } from "motion/react";
 import React, { memo } from "react";
 import Footer from "./shared/Footer";
-import { Zap, Settings, ShieldCheck, Activity, ArrowRight } from "lucide-react";
+import { Zap, Settings, ShieldCheck, Activity, ArrowRight, Clock, FileText, Briefcase, Home, Factory, Building2 } from "lucide-react";
 
 const features = [
   {
-    icon: Zap,
-    title: "Instalaciones",
-    description: "Instalaciones residenciales, industriales y comerciales.",
-    stat: "Integral",
-    label: "Cobertura"
-  },
-  {
-    icon: Settings,
-    title: "Mantenimiento",
-    description: "Mantenimiento a instalaciones eléctricas de todo tipo.",
-    stat: "24/7",
-    label: "Disponibilidad"
-  },
-  {
-    icon: ShieldCheck,
-    title: "Fugas Eléctricas",
-    description: "Detección y reparación de fugas eléctricas.",
-    stat: "Eficaz",
-    label: "Seguridad"
-  },
-  {
+    id: "mantenimiento",
     icon: Activity,
-    title: "Preventivo",
-    description: "Mantenimiento preventivo para evitar futuras averías.",
-    stat: "Óptimo",
-    label: "Protección"
+    title: "Mantenimiento Preventivo",
+    description: "Cuidamos su red eléctrica con revisiones constantes para evitar fallas y que su propiedad siempre sea segura.",
+    stat: "Atención",
+    label: "Preventivo"
+  },
+  {
+    id: "emergencia",
+    icon: Settings,
+    title: "Mantenimiento Correctivo",
+    description: "Le ayudamos con las reparaciones más difíciles para que sus equipos vuelvan a funcionar rápido.",
+    stat: "Especial",
+    label: "Correctivo"
+  },
+  {
+    id: "instalacion",
+    icon: Zap,
+    title: "Nuevas Instalaciones",
+    description: "Diseñamos y montamos la red eléctrica de su proyecto con seguridad y materiales de calidad.",
+    stat: "Completo",
+    label: "Garantizado"
+  },
+  {
+    id: "residencial",
+    icon: Home,
+    title: "Residencias y Hogares",
+    description: "Instalaciones y reparaciones seguras para que su hogar siempre tenga energía confiable.",
+    stat: "Hogar",
+    label: "Seguro"
+  },
+  {
+    id: "industrial",
+    icon: Factory,
+    title: "Industrias y Fábricas",
+    description: "Soluciones de alta potencia para maquinaria pesada y continuidad de producción.",
+    stat: "Poder",
+    label: "Industrial"
+  },
+  {
+    id: "comercial",
+    icon: Building2,
+    title: "Oficinas y Comercios",
+    description: "Iluminación y redes eléctricas eficientes para que su negocio nunca se detenga.",
+    stat: "Negocio",
+    label: "Continuo"
+  },
+  {
+    id: "motores",
+    icon: Settings,
+    title: "Motores y Maquinaria",
+    description: "Mantenimiento especializado de motores eléctricos y sistemas de automatización.",
+    stat: "Fuerza",
+    label: "Maquinaria"
+  },
+  {
+    id: "plantas",
+    icon: Zap,
+    title: "Plantas Eléctricas",
+    description: "Instalación y soporte de generadores para que su respaldo siempre esté listo.",
+    stat: "Respaldo",
+    label: "Energía"
+  },
+  {
+    id: "consultoria",
+    icon: FileText,
+    title: "Ahorro de Energía",
+    description: "Analizamos su consumo de luz para ayudarle a ahorrar dinero y mejorar su eficiencia.",
+    stat: "Eficiente",
+    label: "Ahorro"
+  },
+  {
+    id: "emergencia_expres",
+    icon: Clock,
+    title: "Atención Inmediata",
+    description: "Llegamos en minutos para solucionar sus emergencias eléctricas más urgentes.",
+    stat: "Rápido",
+    label: "Prioridad",
+    urgent: true
   }
 ];
 
 function SpecializedSection() {
+  const handleJump = (serviceId: string) => {
+    window.dispatchEvent(new CustomEvent('navJump', { 
+      detail: { 
+        index: 6, 
+        priority: serviceId === 'emergencia_expres' ? 'critica' : 'normal',
+        serviceType: serviceId
+      } 
+    }));
+  };
+
   return (
     <section id="specialized" className="relative min-h-[100dvh] w-full bg-white flex flex-col pt-24 md:pt-32 pb-16 md:pb-24">
       
@@ -53,147 +116,69 @@ function SpecializedSection() {
             className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-16"
           >
             <div className="max-w-2xl">
-              <span className="text-primary tracking-[0.4em] font-black block mb-4 uppercase text-[10px]">Especialidades</span>
+              <span className="text-primary tracking-[0.4em] font-black block mb-4 uppercase text-[10px]">Lo que hacemos</span>
               <h2 className="font-display text-ink leading-[0.9] text-[clamp(2rem,5vw,4rem)] uppercase tracking-tighter">
-                Nuestros <br /> <span className="text-primary italic">Servicios</span>
+                Nuestros <br /> <span className="text-primary italic">Servicios para Usted</span>
               </h2>
             </div>
             <div className="max-w-md">
-              <p className="text-ink text-base md:text-lg font-medium leading-relaxed mb-6">
-                Brindamos soluciones integrales que garantizan seguridad y eficiencia para su hogar, comercio o industria, adaptándonos a cualquier escala de proyecto.
+              <p className="text-ink text-sm md:text-base font-medium leading-relaxed mb-6">
+                Desde mantenimientos preventivos hasta grandes instalaciones industriales, reunimos toda nuestra experiencia técnica para cuidar su energía.
               </p>
-              {/* <motion.button
-                whileHover={{ scale: 1.02, x: 5 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => window.dispatchEvent(new CustomEvent('openGlobalModal', {
-                  detail: {
-                    title: "Servicios Integrales",
-                    subtitle: "Cobertura Total",
-                    description: "Nuestro equipo se encarga de que su infraestructura eléctrica funcione a la perfección, desde instalaciones residenciales y comerciales hasta mantenimientos preventivos y detección de fugas.",
-                    image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=800",
-                    stats: [
-                      { label: "Áreas", value: "Industrial" },
-                      { label: "Soporte", value: "Residencial" },
-                      { label: "Alcance", value: "Comercial" }
-                    ]
-                  }
-                }))}
-                className="flex items-center gap-4 text-ink font-black uppercase tracking-[0.2em] text-[10px] hover:text-primary transition-colors group"
-              >
-                Explorar Capacidades
-                <span className="w-8 h-8 rounded-full border border-primary/30 flex items-center justify-center bg-primary/5 group-hover:bg-primary group-hover:text-white transition-colors">
-                  <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                </span>
-              </motion.button> */}
             </div>
           </motion.div>
 
-          {/* Grid Section */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 w-full auto-rows-[200px] sm:auto-rows-[250px] md:auto-rows-[300px]">
+          {/* Grid Section - Now uniform for all services */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
             
-            {/* Image Box */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.1 }}
-              className="md:col-span-8 relative overflow-hidden bg-white/50 group rounded-sm shadow-xl"
-            >
-              <img 
-                src="img/services/4.png"
-                alt="Nuestra experiencia y proyectos"
-                className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000"
-                loading="lazy"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-700" />
-              <div className="absolute bottom-8 left-8 text-white transition-opacity duration-700 translate-y-4 group-hover:translate-y-0">
-                <span className="font-display text-4xl uppercase tracking-tighter shadow-sm drop-shadow-md">Soluciones Integrales</span>
-                <span className="block text-[10px] font-black uppercase tracking-[0.3em] text-primary mt-2 drop-shadow-md">Garantía y Seguridad</span>
-              </div>
-            </motion.div>
-
-            {/* Feature Box 1 */}
-            {(() => {
-              const Icon0 = features[0].icon;
-              return (
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  onClick={() => window.dispatchEvent(new CustomEvent('navJump', { detail: { index: 3 } }))}
-                  className="md:col-span-4 cursor-pointer bg-primary text-white p-8 flex flex-col justify-between group hover:shadow-2xl transition-all duration-500 rounded-sm"
-                >
-                  <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-500">
-                    <Icon0 strokeWidth={1.5} className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span className="block font-display text-4xl text-white mb-2 tracking-tighter">{features[0].stat}</span>
-                    <h3 className="text-white/90 font-black text-[10px] uppercase tracking-[0.2em] mb-4">{features[0].title}</h3>
-                    <p className="text-white/80 text-sm font-medium">{features[0].description}</p>
-                  </div>
-                </motion.div>
-              );
-            })()}
-
-            {/* Feature Boxes 2, 3, 4 */}
-            {features.slice(1).map((feature, idx) => {
-              const modalDetails = [
-                {
-                  desc: "Garantizamos el óptimo funcionamiento de su infraestructura eléctrica mediante servicios de mantenimiento correctivo y periódico. Atendemos emergencias y mantenemos sus sistemas operacionales las 24 horas del día.",
-                  img: "img/services/1.png",
-                  stats: [{label: "Disponibilidad", value: "24/7"}, {label: "Tiempos", value: "Inmediatos"}, {label: "Personal", value: "Certificado"}]
-                },
-                {
-                  desc: "Identificamos y solucionamos problemas de fugas eléctricas que encarecen su recibo y ponen en riesgo su propiedad. Utilizamos equipo de medición especializado para un diagnóstico exacto y una reparación definitiva.",
-                  img: "img/services/2.png",
-                  stats: [{label: "Ahorro", value: "Garantizado"}, {label: "Diagnóstico", value: "Preciso"}, {label: "Seguridad", value: "Total"}]
-                },
-                {
-                  desc: "Prevenir es más rentable que corregir. Nuestro servicio de mantenimiento preventivo evalúa la salud técnica de sus paneles, cableado y maquinarias para extender su vida útil y evitar paros inesperados.",
-                  img: "img/services/3.jpg",
-                  stats: [{label: "Planificación", value: "Estratégica"}, {label: "Riesgos", value: "Mitigados"}, {label: "Vida Útil", value: "Extendida"}]
-                }
-              ];
-              const detail = modalDetails[idx];
-
+            {/* Service Cards */}
+            {features.map((feature, idx) => {
+              const Icon = feature.icon;
               return (
               <motion.div 
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.3 + (idx * 0.1) }}
-                onClick={() => {
-                  if (feature.title === "Mantenimiento") {
-                    window.dispatchEvent(new CustomEvent('navJump', { detail: { index: 4 } }));
-                  } else {
-                    window.dispatchEvent(new CustomEvent('openGlobalModal', {
-                      detail: {
-                        title: feature.title,
-                        subtitle: feature.label,
-                        description: detail.desc,
-                        image: detail.img,
-                        stats: detail.stats
-                      }
-                    }));
-                  }
-                }}
-                className="md:col-span-4 cursor-pointer bg-white border border-primary/10 p-8 flex flex-col justify-between group hover:shadow-xl transition-all duration-500 hover:-translate-y-1 hover:border-primary/40 rounded-sm"
+                transition={{ duration: 0.8, delay: (idx % 3) * 0.1 }}
+                onClick={() => handleJump(feature.id)}
+                className={`cursor-pointer p-8 flex flex-col justify-between group transition-all duration-500 rounded-sm overflow-hidden relative min-h-[250px] ${
+                  feature.urgent 
+                    ? 'bg-ink text-white shadow-2xl border-l-4 border-primary' 
+                    : 'bg-white border border-primary/10 hover:shadow-xl hover:border-primary/40'
+                }`}
               >
-                <div className="flex justify-between items-start">
-                  <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-500">
-                    <feature.icon strokeWidth={1.5} className="w-4 h-4" />
+                {feature.urgent && (
+                  <div className="absolute -right-4 -top-4 opacity-[0.05] group-hover:opacity-[0.08] transition-opacity">
+                    <Icon className="w-32 h-32" />
+                  </div>
+                )}
+                
+                <div className="flex justify-between items-start relative z-10">
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-500 ${
+                    feature.urgent ? 'bg-primary text-white' : 'bg-primary/5 text-primary group-hover:bg-primary group-hover:text-white'
+                  }`}>
+                    <Icon strokeWidth={1.5} className="w-4 h-4" />
                   </div>
                   <div className="text-right">
-                    <span className="font-display text-2xl text-ink tracking-tighter">{feature.stat}</span>
-                    <span className="block text-[8px] font-black uppercase tracking-[0.2em] text-primary">{feature.label}</span>
+                    <span className={`font-display text-2xl tracking-tighter ${feature.urgent ? 'text-white' : 'text-ink'}`}>{feature.stat}</span>
+                    <span className={`block text-[8px] font-black uppercase tracking-[0.2em] ${feature.urgent ? 'text-primary' : 'text-primary'}`}>{feature.label}</span>
                   </div>
                 </div>
-                <div>
-                  <h3 className="text-ink font-display text-xl uppercase tracking-tighter mb-2 group-hover:text-primary transition-colors">{feature.title}</h3>
-                  <p className="text-ink/70 text-xs font-medium leading-relaxed">{feature.description}</p>
+
+                <div className="relative z-10 mt-6">
+                  <h3 className={`font-display text-xl uppercase tracking-tighter mb-2 transition-colors ${
+                    feature.urgent ? 'text-white' : 'text-ink group-hover:text-primary'
+                  }`}>{feature.title}</h3>
+                  <p className={`text-xs font-medium leading-relaxed ${
+                    feature.urgent ? 'text-white/70' : 'text-ink/70'
+                  }`}>{feature.description}</p>
+                </div>
+
+                <div className={`mt-4 flex items-center gap-2 text-[8px] font-black uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all ${
+                  feature.urgent ? 'text-primary' : 'text-ink'
+                }`}>
+                  Solicitar Ahora <ArrowRight className="w-2 h-2" />
                 </div>
               </motion.div>
             )})}
@@ -208,4 +193,5 @@ function SpecializedSection() {
 }
 
 export default memo(SpecializedSection);
+
 

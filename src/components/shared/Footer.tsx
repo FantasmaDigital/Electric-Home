@@ -16,14 +16,14 @@ const socialLinks = [
 
 function Footer() {
   return (
-    <footer className="relative z-10 w-full bg-white pt-20 pb-10 px-6 md:px-16 border-t border-ink/5">
+    <footer className="relative z-10 w-full bg-white pt-20 pb-10 px-6 md:px-16 border-t border-ink/5 overflow-hidden">
       <div className="max-w-[1400px] mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
           
           {/* Brand and Tagline */}
           <div className="space-y-6 max-w-sm">
             <div className="flex items-center gap-3">
-              <img src="logo.png" alt="Electric Home" className="w-auto h-40 justify-center items-center flex mx-auto md:mx-0 md:h-24" loading="lazy" />
+              <img src="logo.png" alt="Electric Home" className="w-auto h-24 md:h-24" loading="lazy" />
             </div>
             <p className="text-secondary text-sm font-medium leading-relaxed">
               Líderes en ingeniería eléctrica industrial y residencial. Soluciones de alta fidelidad.

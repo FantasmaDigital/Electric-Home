@@ -7,7 +7,7 @@ interface NavbarProps {
 }
 
 export default function Navbar({ x }: NavbarProps) {
-  const navItems = ["Inicio", "Nosotros", "Especializados", "Instalaciones", "Mantenimiento", "Galería", "Contacto"];
+  const navItems = ["Inicio", "Nosotros", "Servicios", "Instalaciones", "Mantenimiento", "Galería", "Contacto"];
   
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -70,7 +70,7 @@ export default function Navbar({ x }: NavbarProps) {
         </div>
 
         <div className="flex items-center gap-3 md:gap-4">
-          <button className="hidden sm:block bg-ink text-white px-5 md:px-8 py-2 md:py-3 font-sans tracking-[0.2em] font-black uppercase text-[10px] md:text-xs hover:bg-primary transition-all active:scale-95 shadow-xl rounded" onClick={() => scrollToSection(6)}>
+          <button id="services" className="hidden sm:block bg-ink text-white px-5 md:px-8 py-2 md:py-3 font-sans tracking-[0.2em] font-black uppercase text-[10px] md:text-xs hover:bg-primary transition-all active:scale-95 shadow-xl rounded" onClick={() => scrollToSection(6)}>
             Solicitar Servicio
           </button>
           

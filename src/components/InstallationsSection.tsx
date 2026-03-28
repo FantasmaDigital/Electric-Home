@@ -4,7 +4,7 @@ import Footer from "./shared/Footer";
 
 function InstallationsSection() {
   return (
-    <section id="installations" className="min-h-[100dvh] w-full bg-surface overflow-y-auto flex flex-col pt-24 md:pt-32 pb-16 md:pb-24">
+    <section id="installations" className="min-h-[100dvh] w-full bg-surface overflow-x-hidden flex flex-col pt-24 md:pt-32 pb-16 md:pb-24">
       <div className="flex-grow flex items-center pb-20">
         <div className="max-w-full mx-auto px-8 md:px-16 grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center w-full">
           <motion.div
@@ -12,26 +12,26 @@ function InstallationsSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="md:col-span-6 order-2 md:order-1 relative"
+            className="md:col-span-6 order-2 md:order-1 relative overflow-hidden md:overflow-visible"
           >
             {/* Creative Decorative Element */}
             <div className="absolute -left-12 -top-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl -z-10 animate-pulse" />
             
-            <span className="text-primary tracking-[0.4em] font-black block mb-4 uppercase text-[10px]">Servicio Completo</span>
+            <span className="text-primary tracking-[0.4em] font-black block mb-4 uppercase text-[10px]">Lo que hacemos</span>
             <h2 className="font-display text-ink leading-[0.9] text-[clamp(2.5rem,10vw,4.5rem)] uppercase tracking-tighter mb-8">
-              Electricista <br /> <span className="text-primary italic">a Domicilio</span>
+              Expertos <br /> <span className="text-primary italic">a su Servicio</span>
             </h2>
             
             <p className="text-secondary text-sm md:text-lg font-medium leading-relaxed max-w-lg mb-10">
-              Desde la planificación inicial hasta la certificación final, garantizamos que su infraestructura eléctrica cumpla con los estándares internacionales más exigentes.
+              Cuidamos cada detalle de su instalación eléctrica para que usted tenga un sistema seguro, moderno y que funcione perfectamente por mucho tiempo.
             </p>
             
             <div className="space-y-8 pt-6 border-t border-primary/10 max-w-lg">
               {[
-                { label: "Industrial", value: "Subestaciones, Motores y Automatización", code: "IND-PRJ", tags: ["Media Tensión", "Trifásicos"] },
-                { label: "Residencial", value: "Redes, Iluminación y Seguridad Domiciliar", code: "RES-DOM", tags: ["Inteligente", "Certificado"] },
-                { label: "Comercial", value: "Centros de Carga y UPS para Oficinas", code: "COM-STR", tags: ["Eficiencia", "Normativo"] },
-                { label: "Emergencias", value: "Respuesta Inmediata 24/7 en Averías Críticas", code: "EMR-247", tags: ["Prioritario", "Seguro"] }
+                { label: "Residencias y Hogares", value: "Hacemos su hogar más seguro con instalaciones eléctricas modernas, seguras y de alta calidad.", code: "HOGAR", tags: ["Residencial", "Calidad"] },
+                { label: "Industrias y Fábricas", value: "Instalamos lo necesario para que su producción sea constante y segura.", code: "INDUSTRIA", tags: ["Fuerza", "Seguridad"] },
+                { label: "Oficinas y Comercios", value: "Aseguramos energía estable para que su negocio nunca deje de atender clientes.", code: "COMERCIO", tags: ["Estable", "Eficiente"] },
+                { label: "Atención de Emergencias", value: "Estamos listos para ayudarle rápido cuando tenga una falla urgente.", code: "URGENTE", tags: ["24/7", "Rápido"] }
               ].map((item, i) => (
                 <div key={i} className="flex justify-between items-start group relative">
                   <div className="flex-grow">
@@ -75,13 +75,13 @@ function InstallationsSection() {
             <div className="relative bg-white p-2 md:p-3 shadow-2xl">
               <img
                 src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=1200"
-                alt="Instalación eléctrica industrial"
+                alt="Proyectos eléctricos seguros"
                 className="w-full aspect-video object-cover"
                 referrerPolicy="no-referrer"
                 loading="lazy"
               />
               <div className="absolute -bottom-4 md:-bottom-6 -left-4 md:-left-6 bg-ink px-4 md:px-8 py-2 md:py-4 text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-white shadow-2xl">
-                ¡Los más altos estándares!
+                ¡Seguridad en cada detalle!
               </div>
             </div>
           </motion.div>

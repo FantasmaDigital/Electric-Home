@@ -31,7 +31,7 @@ function Hero() {
           className="mb-4 md:mb-8"
         >
           <span className="text-primary tracking-[0.6em] md:tracking-[0.8em] font-black uppercase text-[8px] md:text-xs">
-            Ingeniería Eléctrica Industrial
+            Soluciones Eléctricas Confiables
           </span>
         </motion.div>
 
@@ -41,8 +41,8 @@ function Hero() {
           transition={{ duration: 1, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="font-display text-white tracking-tighter leading-[0.9] uppercase text-[clamp(2.5rem,10vw,5.5rem)]"
         >
-          POTENCIA <br />
-          <span className="text-primary italic">GARANTIZADA</span>
+          ENERGÍA <br />
+          <span className="text-primary italic">INTELIGENTE</span>
         </motion.h1>
 
         <motion.div
@@ -52,7 +52,7 @@ function Hero() {
           className="mt-8 md:mt-12 max-w-2xl mx-auto"
         >
           <p className="text-white font-medium tracking-tight text-base md:text-xl leading-relaxed px-4">
-            Instalaciones, mantenimiento y automatización eléctrica industrial. Soluciones confiables para empresas y oficinas que exigen el más alto estándar.
+            Instalamos y cuidamos la energía de su hogar o empresa. Nos enfocamos en la seguridad y la eficiencia técnica para que usted pueda avanzar sin preocupaciones.
           </p>
         </motion.div>
 
@@ -68,18 +68,8 @@ function Hero() {
           </button>
 
           <button
-            onClick={() => window.dispatchEvent(new CustomEvent('openGlobalModal', {
-              detail: {
-                title: "Potencia Garantizada",
-                subtitle: "Ingeniería Eléctrica Industrial",
-                description: "Somos especialistas en instalaciones eléctricas industriales y comerciales. Desde la gestión de nuevas conexiones, hasta la instalación de maquinaria industrial, mantenimiento de motores y generadores, y sistemas de protección de voltaje. Contamos con técnicos certificados y años de experiencia en el sector.",
-                image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=1920",
-                stats: [
-                  { label: "Años de experiencia", value: "20+" },
-                  { label: "Proyectos completados", value: "500+" },
-                  { label: "Tiempo de respuesta", value: "24h" }
-                ]
-              }
+            onClick={() => window.dispatchEvent(new CustomEvent('navJump', {
+              detail: { index: 1 }
             }))}
             className="flex items-center gap-4 text-white hover:text-primary transition-all text-[10px] font-black uppercase tracking-[0.3em] group"
           >

@@ -1,6 +1,6 @@
 import React, { memo, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Facebook, Instagram, Plus, X } from "lucide-react";
+import { Facebook, Instagram, Plus, X, MessageCircle } from "lucide-react";
 
 const TikTok = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -9,6 +9,7 @@ const TikTok = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const socialLinks = [
+  { icon: MessageCircle, href: `https://wa.me/503${import.meta.env.VITE_PHONE_NUMBER.replace(/\s+/g, '')}`, label: "WhatsApp" },
   { icon: Facebook, href: "http://facebook.com/electrichomesv/", label: "Facebook" },
   { icon: Instagram, href: "https://www.instagram.com/electrichome4756?igsh=NnBrNDd3dmp0cHg1", label: "Instagram" },
   { icon: TikTok, href: "https://www.tiktok.com/@electric_home2005?_r=1&_t=ZS-952lB9P7ZfY", label: "TikTok" },

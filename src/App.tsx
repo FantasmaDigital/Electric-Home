@@ -26,7 +26,7 @@ export default function App() {
   const [showHint, setShowHint] = useState(true);
   const [hoverSide, setHoverSide] = useState<"left" | "right" | null>(null);
 
-  const sectionNames = useMemo(() => ["01 / INICIO", "02 / NOSOTROS", "03 / ESPECIALIZADOS", "04 / INSTALACIONES", "05 / MANTENIMIENTO", "06 / GALERÍA", "07 / CONTACTO"], []);
+  const sectionNames = useMemo(() => ["01 / INICIO", "02 / NOSOTROS", "03 / SERVICIOS", "04 / INSTALACIONES", "05 / MANTENIMIENTO", "06 / GALERÍA", "07 / CONTACTO"], []);
 
   const x = useMotionValue(0);
   const springX = useSpring(x, { stiffness: 400, damping: 45, mass: 1.2, restDelta: 0.001 });
@@ -191,7 +191,7 @@ export default function App() {
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 50, opacity: 0 }}
-            className="fixed bottom-12 left-1/2 -translate-x-1/2 z-[100] bg-ink/90 backdrop-blur-md px-6 py-3 rounded-full border border-white/10 shadow-2xl flex items-center gap-4 text-white"
+            className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[100] bg-ink/90 backdrop-blur-md px-6 py-3 rounded-full border border-white/10 shadow-2xl flex items-center gap-4 text-white"
           >
             <div className="flex items-center gap-2">
               <ChevronLeft size={16} className="animate-pulse text-primary hidden md:block" onClick={() => handleManualMove("prev")} />
@@ -222,7 +222,6 @@ export default function App() {
         className="fixed top-0 left-0 right-0 h-1 bg-primary z-[100]"
       />
 
-      {/* Cinematic Slide Transition Overlay */}
       <AnimatePresence>
         {showWipe && (
           <div className="fixed inset-0 z-[200] pointer-events-none flex items-center justify-center overflow-hidden">
