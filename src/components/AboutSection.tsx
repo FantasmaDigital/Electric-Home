@@ -27,8 +27,8 @@ function AboutSection() {
       <div className="flex-grow flex items-center">
         <div className="max-w-full mx-auto px-6 md:px-16 w-full">
           <div className="flex flex-col lg:grid lg:grid-cols-12 gap-12 md:gap-20 items-center">
-            
-            <motion.div 
+
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -41,7 +41,7 @@ function AboutSection() {
                   INGENIERÍA QUE <br /> <span className="text-primary not-italic">IMPULSA EL PROGRESO</span>
                 </h2>
               </div>
-              
+
               <div className="space-y-6 max-w-2xl">
                 <p className="text-secondary text-lg md:text-2xl font-medium leading-relaxed">
                   Con más de 20 años de experiencia, <span className="text-ink font-bold border-b-2 border-primary/20">Electric Home</span> se ha consolidado como el aliado estratégico para la industria salvadoreña.
@@ -53,7 +53,7 @@ function AboutSection() {
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8 border-t border-ink/5">
                 {values.map((v, i) => (
-                  <motion.div 
+                  <motion.div
                     key={i}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -71,7 +71,7 @@ function AboutSection() {
               </div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -80,9 +80,9 @@ function AboutSection() {
             >
               <div className="relative bg-white p-2 md:p-4 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] overflow-visible">
                 <div className="relative overflow-hidden aspect-[4/5]">
-                  <img 
-                    src="img/about.jpeg" 
-                    alt="Servicios de Electromecánica y Mantenimiento Industrial en El Salvador" 
+                  <img
+                    src="img/about.jpeg"
+                    alt="Servicios de Electromecánica y Mantenimiento Industrial en El Salvador"
                     className="w-full h-full object-cover group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
                     referrerPolicy="no-referrer"
                   />

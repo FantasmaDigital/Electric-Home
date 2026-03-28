@@ -120,7 +120,7 @@ export default function App() {
 
       if (activeSection) {
         if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
-          if (e.cancelable) e.preventDefault(); 
+          if (e.cancelable) e.preventDefault();
 
           if (Math.abs(deltaX) > SWIPE_THRESHOLD && now - lastScrollTime.current >= PAUSE_DURATION) {
             if (deltaX > 0 && currentIndex < sections.length - 1) {
@@ -306,43 +306,43 @@ export default function App() {
               {/* Right: Content */}
               <div className="lg:w-1/2 relative bg-white h-full flex flex-col pt-24 md:pt-32">
                 <div className="flex-1 overflow-y-auto px-8 md:px-14 lg:px-20 pb-16 md:pb-24 flex flex-col space-y-8 md:space-y-10 custom-scrollbar">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4">
-                    <div className="w-8 h-[2px] bg-primary" />
-                    <span className="text-primary font-black uppercase tracking-[0.4em] text-[10px]">
-                      {modalContent.subtitle}
-                    </span>
-                  </div>
-                  <h2 className="font-display text-ink leading-[0.85] text-[clamp(2rem,4vw,4rem)] uppercase tracking-tight">
-                    {modalContent.title.split(' ').map((word: string, i: number) => (
-                      <span key={i} className={i === modalContent.title.split(' ').length - 1 ? "text-primary italic" : ""}>
-                        {word}{' '}
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-4">
+                      <div className="w-8 h-[2px] bg-primary" />
+                      <span className="text-primary font-black uppercase tracking-[0.4em] text-[10px]">
+                        {modalContent.subtitle}
                       </span>
-                    ))}
-                  </h2>
-                </div>
-
-                <p className="text-secondary text-sm md:text-base font-medium leading-relaxed max-w-md">
-                  {modalContent.description}
-                </p>
-
-                <div className="grid grid-cols-2 gap-8 pt-8 border-t border-ink/5">
-                  {modalContent.stats.map((stat: any, i: number) => (
-                    <div key={i} className="space-y-1">
-                      <span className="block font-display text-2xl text-ink uppercase tracking-tighter">{stat.value}</span>
-                      <span className="text-[9px] uppercase font-black text-primary tracking-widest leading-none">{stat.label}</span>
                     </div>
-                  ))}
-                </div>
+                    <h2 className="font-display text-ink leading-[0.85] text-[clamp(2rem,4vw,4rem)] uppercase tracking-tight">
+                      {modalContent.title.split(' ').map((word: string, i: number) => (
+                        <span key={i} className={i === modalContent.title.split(' ').length - 1 ? "text-primary italic" : ""}>
+                          {word}{' '}
+                        </span>
+                      ))}
+                    </h2>
+                  </div>
 
-                <button
-                  onClick={() => setModalContent(null)}
-                  className="w-fit bg-ink text-white px-10 py-5 text-[10px] font-black uppercase tracking-[0.4em] hover:bg-primary transition-all active:scale-95 shadow-xl"
-                >
-                  Cerrar Detalles
-                </button>
+                  <p className="text-secondary text-sm md:text-base font-medium leading-relaxed max-w-md">
+                    {modalContent.description}
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-8 pt-8 border-t border-ink/5">
+                    {modalContent.stats.map((stat: any, i: number) => (
+                      <div key={i} className="space-y-1">
+                        <span className="block font-display text-2xl text-ink uppercase tracking-tighter">{stat.value}</span>
+                        <span className="text-[9px] uppercase font-black text-primary tracking-widest leading-none">{stat.label}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <button
+                    onClick={() => setModalContent(null)}
+                    className="w-fit bg-ink text-white px-10 py-5 text-[10px] font-black uppercase tracking-[0.4em] hover:bg-primary transition-all active:scale-95 shadow-xl"
+                  >
+                    Cerrar Detalles
+                  </button>
+                </div>
               </div>
-            </div>
             </motion.div>
           </motion.div>
         )}
