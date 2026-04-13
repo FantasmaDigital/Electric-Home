@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "motion/react";
 import { Facebook, Instagram, Mail, Phone } from "lucide-react";
 import React, { memo } from "react";
@@ -19,7 +21,7 @@ function Footer() {
     <footer className="relative z-10 w-full bg-white pt-20 pb-10 px-6 md:px-16 border-t border-ink/5 overflow-hidden">
       <div className="max-w-[1400px] mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
-          
+
           {/* Brand and Tagline */}
           <div className="space-y-6 max-w-sm">
             <div className="flex items-center gap-3">
@@ -37,11 +39,15 @@ function Footer() {
               <ul className="space-y-3">
                 <li className="flex items-center gap-3 text-ink hover:text-primary transition-colors cursor-pointer group">
                   <Mail className="w-4 h-4 text-secondary group-hover:text-primary transition-colors" />
-                  <a className="text-xs font-bold uppercase tracking-widest" href={`mailto:${import.meta.env.VITE_EMAIL}`}>{import.meta.env.VITE_EMAIL}</a>
+                  <a className="text-xs font-bold uppercase tracking-widest" href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`}>{process.env.NEXT_PUBLIC_EMAIL}</a>
                 </li>
                 <li className="flex items-center gap-3 text-ink hover:text-primary transition-colors cursor-pointer group">
                   <Phone className="w-4 h-4 text-secondary group-hover:text-primary transition-colors" />
-                  <a className="text-xs font-bold uppercase tracking-widest" href={`https://wa.me/503${import.meta.env.VITE_PHONE_NUMBER.split('-').join('')}`} target="_blank" rel="noopener noreferrer">{import.meta.env.VITE_PHONE_NUMBER}</a>
+                  <a className="text-xs font-bold uppercase tracking-widest" href={`https://wa.me/503${(process.env.NEXT_PUBLIC_PHONE_NUMBER_ONE || "").replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer">{process.env.NEXT_PUBLIC_PHONE_NUMBER_ONE}</a>
+                </li>
+                <li className="flex items-center gap-3 text-ink hover:text-primary transition-colors cursor-pointer group">
+                  <Phone className="w-4 h-4 text-secondary group-hover:text-primary transition-colors" />
+                  <a className="text-xs font-bold uppercase tracking-widest" href={`https://wa.me/503${(process.env.NEXT_PUBLIC_PHONE_NUMBER_TWO || "").replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer">{process.env.NEXT_PUBLIC_PHONE_NUMBER_TWO}</a>
                 </li>
               </ul>
             </div>

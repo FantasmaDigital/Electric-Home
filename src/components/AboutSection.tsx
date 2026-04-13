@@ -1,3 +1,5 @@
+"use client";
+
 import { motion, AnimatePresence } from "motion/react";
 import { Shield, Target, Award, ChevronRight } from "lucide-react";
 import React, { useState, memo } from "react";
@@ -24,10 +26,10 @@ const values = [
 function AboutSection() {
 
   return (
-    <section id="about" className="min-h-[100dvh] w-full bg-white overflow-y-auto flex flex-col pt-24 md:pt-32 pb-16 md:pb-24">
+    <section id="about" className="min-h-[100dvh] w-full bg-white overflow-y-auto flex flex-col pt-24 md:pt-32">
       <div className="flex-grow flex items-center">
-        <div className="max-w-full mx-auto px-6 md:px-16 w-full">
-          <div className="flex flex-col lg:grid lg:grid-cols-12 gap-12 md:gap-20 items-center">
+        <div className="w-full lg:w-[80%] mx-auto px-6 md:px-16">
+          <div className="flex flex-col lg:grid lg:grid-cols-12 gap-12 md:gap-20 items-center pb-20">
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}

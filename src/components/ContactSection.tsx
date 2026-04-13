@@ -1,6 +1,8 @@
+"use client";
+
 import { motion, AnimatePresence } from "motion/react";
 import React, { useState, useEffect, useRef, memo } from "react";
-import { Mail, Phone, MapPin, FileText, CheckCircle, AlertCircle, Clock, ChevronDown } from "lucide-react";
+import { Mail, Phone, MapPin, FileText, CheckCircle, AlertCircle, Clock, ChevronDown, CreditCard } from "lucide-react";
 import Footer from "./shared/Footer";
 
 const serviceOptions = [
@@ -94,6 +96,8 @@ function ContactSection() {
     message: ""
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
 
   // Listen for automated jumps from the Emergency Module
@@ -112,10 +116,47 @@ function ContactSection() {
     return () => window.removeEventListener("navJump", handleNavJump);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+    setIsLoading(true);
+    setErrorMessage("");
+
+    const serviceName = serviceOptions.find(o => o.id === formState.serviceType)?.label || formState.serviceType;
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formState,
+          serviceType: serviceName, // Pass the human-readable label
+        }),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        // Reset form after success
+        setFormState({
+          name: "",
+          email: "",
+          company: "",
+          serviceType: "mantenimiento",
+          priority: "normal",
+          location: "",
+          budget: "",
+          message: ""
+        });
+      } else {
+        const errorData = await response.json();
+        setErrorMessage(errorData.error || "Algo salió mal. Por favor intente de nuevo.");
+      }
+    } catch (error) {
+      setErrorMessage("Error de conexión. Por favor intente de nuevo.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleWhatsApp = (e: React.FormEvent) => {
@@ -123,9 +164,9 @@ function ContactSection() {
     if (formRef.current && !formRef.current.reportValidity()) {
       return;
     }
-    const phone = import.meta.env.VITE_PHONE_NUMBER.replace(/\D/g, '');
+    const phone = (process.env.NEXT_PUBLIC_PHONE_NUMBER_ONE || "").replace(/\D/g, '');
     const serviceName = serviceOptions.find(o => o.id === formState.serviceType)?.label || formState.serviceType;
-    
+
     const text = `*Consulta de Servicio - Electric Home*%0A%0A` +
       `*Nombre:* ${formState.name}%0A` +
       `*Empresa/Hogar:* ${formState.company || 'N/A'}%0A` +
@@ -138,15 +179,15 @@ function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative min-h-screen w-full bg-white flex flex-col overflow-y-auto pt-24 md:pt-32 pb-16 md:pb-24">
-      <div className="flex-grow flex flex-col items-center justify-center px-6 md:px-20">
+    <section id="contact" className="relative min-h-screen w-full bg-white flex flex-col overflow-y-auto pt-24 md:pt-32">
+      <div className="flex-grow flex flex-col items-center justify-center px-6 md:px-20 pb-10">
 
         {/* Subtle Grid Background */}
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
           style={{ backgroundImage: "radial-gradient(#050505 0.5px, transparent 0.5px)", backgroundSize: "32px 32px" }}
         />
 
-        <div className="max-w-[1200px] w-full flex flex-col gap-12 md:gap-20 relative z-10">
+        <div className="w-full lg:w-[80%] mx-auto flex flex-col gap-12 md:gap-20 relative z-10">
 
           {/* --- Header Section --- */}
           <div className="flex flex-col items-center text-center space-y-4">
@@ -185,18 +226,19 @@ function ContactSection() {
               className="lg:w-1/3 flex flex-col justify-center space-y-10 order-2 lg:order-1"
             >
               {[
-                { label: "Correo Corporativo", value: import.meta.env.VITE_EMAIL, icon: Mail },
-                { label: "WhatsApp Corporativo", value: import.meta.env.VITE_PHONE_NUMBER, icon: Phone },
+                { label: "Correo Corporativo", value: process.env.NEXT_PUBLIC_EMAIL, icon: Mail },
+                { label: "WhatsApp", value: process.env.NEXT_PUBLIC_PHONE_NUMBER_ONE, icon: Phone },
+                { label: "WhatsApp", value: process.env.NEXT_PUBLIC_PHONE_NUMBER_TWO, icon: Phone },
                 { label: "Ubicación Regional", value: "San Salvador, El Salvador", icon: MapPin }
               ].map((item, idx) => (
                 <div key={idx} className="flex flex-col gap-2">
                   <span className="text-[9px] font-black uppercase tracking-widest text-primary/60">{item.label}</span>
-                  {item.label === "WhatsApp Corporativo" ? (
+                  {item.label.includes("WhatsApp") || item.label.includes("Línea") ? (
                     <a
-                      href={`https://wa.me/503${import.meta.env.VITE_PHONE_NUMBER.replace(/\D/g, '')}`}
+                      href={`https://wa.me/503${item.value.replace(/\D/g, '')}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-ink font-medium text-lg border-b border-ink/5 pb-2 hover:border-primary transition-all flex items-center gap-3 group"
+                      className="text-ink font-medium text-lg border-b border-ink/5 pb-2 hover:border-primary transition-all flex items-center justify-between group"
                     >
                       {item.value}
                       <span className="text-[8px] bg-green-500 text-white px-2 py-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">Chat Line</span>
@@ -234,8 +276,25 @@ function ContactSection() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="lg:w-2/3 order-1 lg:order-2"
+              className="lg:w-2/3 order-1 lg:order-2 space-y-4"
             >
+              {/* Tasa Cero Badge */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                className="bg-primary/5 border border-primary/20 p-4 rounded-sm flex items-center justify-between group hover:bg-primary/10 transition-colors"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center text-primary">
+                    <CreditCard className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="block text-[10px] font-black uppercase tracking-widest text-primary">Facilidades de Pago</span>
+                    <p className="text-ink text-xs font-bold">Aceptamos Cuotas con Tasa Cero</p>
+                  </div>
+                </div>
+                <div className="hidden sm:block text-[9px] font-black uppercase tracking-widest text-primary/40">Válido con bancos participantes</div>
+              </motion.div>
               <div className="bg-white p-8 sm:p-12 md:p-16 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] relative border border-surface rounded-sm">
 
                 {formState.serviceType === 'emergencia_expres' && (
@@ -259,13 +318,13 @@ function ContactSection() {
                   {[
                     { id: "name", label: "Su Nombre *", placeholder: "Ej. Juan Pérez", type: "text" },
                     { id: "email", label: "Su Correo *", placeholder: "juan@ejemplo.com", type: "email" },
-                    { id: "company", label: "Empresa o Hogar", placeholder: "Nombre de su negocio o residencia", type: "text" },
-                    { id: "location", label: "Ubicación del Sitio *", placeholder: "¿En qué zona o ciudad se encuentra?", type: "text" }
+                    { id: "company", label: "Residencia o Empresa *", placeholder: "Ej. Condominio Las Nubes", type: "text" },
+                    { id: "location", label: "Ubicación del Sitio *", placeholder: "Ciudad o Municipio", type: "text" }
                   ].map((field) => (
                     <div key={field.id} className="flex flex-col gap-2">
                       <label className="text-[8px] font-black uppercase tracking-widest text-secondary">{field.label}</label>
                       <input
-                        required={field.id !== "company"}
+                        required={true}
                         type={field.type}
                         className="bg-transparent border-b border-ink/10 py-3 focus:outline-none focus:border-primary transition-all text-sm font-medium text-ink placeholder:text-secondary/30"
                         placeholder={field.placeholder}
@@ -285,32 +344,12 @@ function ContactSection() {
                   </div>
 
                   <div className="flex flex-col gap-2 md:col-span-2">
-                    <label className="text-[8px] font-black uppercase tracking-widest text-secondary">Prioridad de su solicitud</label>
-                    <div className="flex gap-4 pt-1">
-                      {["Normal", "Alta", "Crítica"].map((lvl) => (
-                        <button
-                          key={lvl}
-                          type="button"
-                          disabled={formState.serviceType === 'emergencia_expres'}
-                          onClick={() => setFormState({ ...formState, priority: lvl.toLowerCase() })}
-                          className={`flex-1 py-3 text-[9px] font-black uppercase tracking-widest transition-all ${formState.priority === lvl.toLowerCase()
-                            ? (lvl === "Crítica" ? "bg-primary text-white" : "bg-ink text-white")
-                            : "bg-surface text-secondary hover:bg-ink/5"
-                            } ${formState.serviceType === 'emergencia_expres' && lvl !== 'Crítica' ? 'opacity-30' : ''}`}
-                        >
-                          {lvl}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col gap-2 md:col-span-2">
-                    <label className="text-[8px] font-black uppercase tracking-widest text-secondary">Detalles de lo que necesita *</label>
+                    <label className="text-[8px] font-black uppercase tracking-widest text-secondary">¿Qué necesita que revisemos? *</label>
                     <textarea
                       required
                       rows={3}
                       className="bg-transparent border-b border-ink/10 py-3 focus:outline-none focus:border-primary transition-all text-sm font-medium text-ink resize-none placeholder:text-secondary/30"
-                      placeholder="Cuéntenos un poco más sobre su requerimiento..."
+                      placeholder="Cuéntenos su requerimiento para brindarle la mejor solución..."
                       value={formState.message}
                       onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                     />
@@ -319,9 +358,11 @@ function ContactSection() {
                   <div className="md:col-span-2 flex flex-col gap-4">
                     <button
                       type="submit"
-                      className={`py-6 text-[10px] font-black uppercase tracking-[0.4em] transition-all shadow-xl flex items-center justify-center gap-4 group ${formState.serviceType === 'emergencia_expres' ? 'bg-primary hover:bg-primary/90' : 'bg-ink hover:bg-primary'} text-white rounded-sm`}
+                      className={`py-6 text-[10px] font-black uppercase tracking-[0.4em] transition-all shadow-xl flex items-center justify-center gap-4 group ${formState.serviceType === 'emergencia_expres' ? 'bg-primary hover:bg-primary/90' : 'bg-ink hover:bg-primary'} text-white rounded-sm disabled:opacity-50 disabled:cursor-not-allowed`}
                     >
-                      {formState.serviceType === 'emergencia_expres' ? (
+                      {isLoading ? (
+                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      ) : formState.serviceType === 'emergencia_expres' ? (
                         <>
                           <Clock className="w-4 h-4 animate-pulse" />
                           ENVIAR AYUDA AHORA
@@ -333,6 +374,10 @@ function ContactSection() {
                         </>
                       )}
                     </button>
+
+                    {errorMessage && (
+                      <p className="text-red-500 text-[10px] font-bold uppercase tracking-widest text-center">{errorMessage}</p>
+                    )}
 
                     <button
                       type="button"

@@ -1,3 +1,5 @@
+"use client";
+
 import { motion, MotionValue, useMotionValueEvent, AnimatePresence } from "motion/react";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";

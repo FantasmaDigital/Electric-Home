@@ -1,90 +1,155 @@
+"use client";
+
 import { motion } from "motion/react";
 import React, { memo } from "react";
 import Footer from "./shared/Footer";
+import { ShieldCheck, Zap, Building2, Home, AlertCircle } from "lucide-react";
+
+const installations = [
+  { 
+    id: "01",
+    label: "Residencial", 
+    value: "Instalaciones eléctricas seguras y modernas para su hogar.", 
+    icon: <Home className="w-5 h-5" />,
+    size: "lg:col-span-3 lg:row-span-1"
+  },
+  { 
+    id: "02",
+    label: "Industrial", 
+    value: "Sistemas de fuerza y alta tensión para fábricas y procesos continuos.", 
+    icon: <Zap className="w-5 h-5" />,
+    size: "lg:col-span-3 lg:row-span-1"
+  },
+  { 
+    id: "03",
+    label: "Comercial", 
+    value: "Energía estable y eficiente para oficinas y locales comerciales.", 
+    icon: <Building2 className="w-5 h-5" />,
+    size: "lg:col-span-3 lg:row-span-1"
+  },
+  { 
+    id: "04",
+    label: "Emergencias", 
+    value: "Atención inmediata para fallas críticas las 24 horas del día.", 
+    icon: <AlertCircle className="w-5 h-5" />,
+    size: "lg:col-span-3 lg:row-span-1"
+  }
+];
 
 function InstallationsSection() {
   return (
-    <section id="installations" className="min-h-[100dvh] w-full bg-surface overflow-x-hidden flex flex-col pt-24 md:pt-32 pb-16 md:pb-24">
-      <div className="flex-grow flex items-center pb-20">
-        <div className="max-w-full mx-auto px-8 md:px-16 grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center w-full">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="md:col-span-6 order-2 md:order-1 relative overflow-hidden md:overflow-visible"
-          >
-            {/* Creative Decorative Element */}
-            <div className="absolute -left-12 -top-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl -z-10 animate-pulse" />
-            
-            <span className="text-primary tracking-[0.4em] font-black block mb-4 uppercase text-[10px]">Lo que hacemos</span>
-            <h2 className="font-display text-ink leading-[0.9] text-[clamp(2.5rem,10vw,4.5rem)] uppercase tracking-tighter mb-8">
-              Expertos <br /> <span className="text-primary italic">a su Servicio</span>
-            </h2>
-            
-            <p className="text-secondary text-sm md:text-lg font-medium leading-relaxed max-w-lg mb-10">
-              Cuidamos cada detalle de su instalación eléctrica para que usted tenga un sistema seguro, moderno y que funcione perfectamente por mucho tiempo.
-            </p>
-            
-            <div className="space-y-8 pt-6 border-t border-primary/10 max-w-lg">
-              {[
-                { label: "Residencias y Hogares", value: "Hacemos su hogar más seguro con instalaciones eléctricas modernas, seguras y de alta calidad.", code: "HOGAR", tags: ["Residencial", "Calidad"] },
-                { label: "Industrias y Fábricas", value: "Instalamos lo necesario para que su producción sea constante y segura.", code: "INDUSTRIA", tags: ["Fuerza", "Seguridad"] },
-                { label: "Oficinas y Comercios", value: "Aseguramos energía estable para que su negocio nunca deje de atender clientes.", code: "COMERCIO", tags: ["Estable", "Eficiente"] },
-                { label: "Atención de Emergencias", value: "Estamos listos para ayudarle rápido cuando tenga una falla urgente.", code: "URGENTE", tags: ["24/7", "Rápido"] }
-              ].map((item, i) => (
-                <div key={i} className="flex justify-between items-start group relative">
-                  <div className="flex-grow">
-                    <div className="flex items-center gap-3 mb-1">
-                      <span className="text-[7px] font-black uppercase tracking-[0.4em] text-primary bg-primary/5 px-2 py-0.5 rounded-full">{item.code}</span>
-                      <div className="h-[1px] w-8 bg-primary/20 group-hover:w-12 transition-all" />
-                    </div>
-                    <h3 className="text-ink font-display text-xl uppercase tracking-tighter leading-none mb-2 group-hover:text-primary transition-colors">{item.label}</h3>
-                    <p className="text-secondary text-[10px] md:text-xs leading-snug max-w-[280px]">{item.value}</p>
-                    <div className="flex gap-2 mt-2 opacity-40 group-hover:opacity-100 transition-opacity">
-                      {item.tags.map(tag => (
-                        <span key={tag} className="text-[7px] border border-ink/20 px-1.5 py-0.5 uppercase tracking-widest">{tag}</span>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="flex flex-col items-end gap-1 pt-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary/20 group-hover:bg-primary transition-all" />
-                    <div className="w-[1px] h-10 bg-gradient-to-b from-primary/20 to-transparent" />
-                  </div>
-                </div>
-              ))}
-            </div>
+    <section id="installations" className="min-h-screen w-full bg-white flex flex-col pt-24 md:pt-32">
+      
+      <div className="flex-grow flex flex-col items-center justify-center">
+        <div className="w-full lg:w-[80%] mx-auto px-6 md:px-16 pb-20">
+          
+          {/* Header Title Layer */}
+          <div className="mb-12">
+            <motion.span 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-primary tracking-[0.4em] font-black block mb-4 uppercase text-[10px]"
+            >
+              Nuestra Especialidad
+            </motion.span>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="font-display text-ink leading-[1] text-[clamp(2.5rem,7vw,4.5rem)] uppercase tracking-tighter"
+            >
+              Ingeniería en <span className="text-primary italic">Instalaciones</span>
+            </motion.h2>
+          </div>
 
-            {/* Floating Background Watermark */}
-            <div className="absolute -right-20 -bottom-20 pointer-events-none select-none -z-10">
-              <span className="font-display text-[20rem] text-primary/[0.03] leading-none uppercase italic select-none">INST</span>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, x: 50 }}
-            whileInView={{ opacity: 1, scale: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2, delay: 0.2 }}
-            className="md:col-span-6 relative order-1 md:order-2"
-          >
-            {/* Technical Grid Background */}
-            <div className="absolute -inset-10 opacity-[0.03] pointer-events-none -z-10 bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:20px_20px]" />
-            <div className="absolute inset-0 border border-primary/5 -m-6 pointer-events-none -z-10" />
-
-            <div className="relative bg-white p-2 md:p-3 shadow-2xl">
+          {/* Bento Grid Structure */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 auto-rows-[200px] md:auto-rows-[240px] gap-4 md:gap-6">
+            
+            {/* 1. Large Hero Visual Cell */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="lg:col-span-8 lg:row-span-2 relative group overflow-hidden bg-surface rounded-sm shadow-xl"
+            >
               <img
-                src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=1200"
-                alt="Proyectos eléctricos seguros"
-                className="w-full aspect-video object-cover"
+                src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=1600"
+                alt="Instalaciones eléctricas industriales"
+                className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
                 referrerPolicy="no-referrer"
                 loading="lazy"
               />
-              <div className="absolute -bottom-4 md:-bottom-6 -left-4 md:-left-6 bg-ink px-4 md:px-8 py-2 md:py-4 text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-white shadow-2xl">
-                ¡Seguridad en cada detalle!
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent opacity-60" />
+              <div className="absolute bottom-8 left-8">
+                <div className="bg-primary px-6 py-3 shadow-2xl">
+                    <span className="block text-white font-display text-2xl uppercase italic">Excelencia Técnica</span>
+                    <span className="block text-ink font-black text-[8px] uppercase tracking-widest mt-1">Soporte Certificado 24/7</span>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+
+            {/* 2. Intro Description Cell */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="lg:col-span-4 lg:row-span-1 bg-surface p-8 md:p-10 flex flex-col justify-center rounded-sm border border-ink/5"
+            >
+              <h3 className="text-ink font-display text-2xl uppercase tracking-tighter leading-tight mb-4">
+                Seguridad que <br /><span className="text-primary">Perdura</span>
+              </h3>
+              <p className="text-secondary text-xs md:text-sm font-medium leading-relaxed">
+                Cada conexión es vital. Aplicamos estándares de ingeniería de alto nivel para asegurar que su energía nunca se detenga.
+              </p>
+            </motion.div>
+
+            {/* 3. Small Info/Badge Cell */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="lg:col-span-4 lg:row-span-1 bg-ink p-8 md:p-10 flex flex-col justify-center rounded-sm text-white"
+            >
+              <ShieldCheck className="w-10 h-10 text-primary mb-4" />
+              <span className="text-primary font-black uppercase text-[10px] tracking-widest block mb-2">Certificación</span>
+              <p className="text-xs font-bold opacity-80 uppercase leading-snug">
+                Más de 20 años cumpliendo normas de seguridad eléctrica.
+              </p>
+            </motion.div>
+
+            {/* 4. Service Category Cells (01-04) */}
+            {installations.map((item, i) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 + (i * 0.1) }}
+                className={`${item.size} bg-white border border-ink/5 p-8 flex flex-col justify-between hover:border-primary transition-all duration-500 group rounded-sm shadow-sm hover:shadow-2xl overflow-hidden`}
+              >
+                <div className="flex justify-between items-start">
+                  <span className="font-display text-4xl text-secondary/10 group-hover:text-primary/20 transition-colors">
+                    {item.id}
+                  </span>
+                  <div className="text-secondary group-hover:text-primary transition-colors">
+                    {item.icon}
+                  </div>
+                </div>
+                <div>
+                  <h4 className="text-ink font-display text-xl uppercase tracking-tight group-hover:text-primary transition-colors mb-2">
+                    {item.label}
+                  </h4>
+                  <p className="text-secondary text-[11px] font-medium leading-relaxed opacity-60 group-hover:opacity-100 transition-opacity">
+                    {item.value}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+
+          </div>
+
         </div>
       </div>
       <Footer />
@@ -93,4 +158,3 @@ function InstallationsSection() {
 }
 
 export default memo(InstallationsSection);
-

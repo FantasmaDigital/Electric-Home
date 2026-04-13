@@ -1,3 +1,5 @@
+"use client";
+
 import React, { memo, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Facebook, Instagram, Plus, X, MessageCircle } from "lucide-react";
@@ -9,7 +11,7 @@ const TikTok = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const socialLinks = [
-  { icon: MessageCircle, href: `https://wa.me/503${import.meta.env.VITE_PHONE_NUMBER.replace(/\s+/g, '')}`, label: "WhatsApp" },
+  { icon: MessageCircle, href: `https://wa.me/503${process.env.NEXT_PUBLIC_PHONE_NUMBER_ONE.replace(/\s+/g, '')}`, label: "WhatsApp" },
   { icon: Facebook, href: "http://facebook.com/electrichomesv/", label: "Facebook" },
   { icon: Instagram, href: "https://www.instagram.com/electrichome4756?igsh=NnBrNDd3dmp0cHg1", label: "Instagram" },
   { icon: TikTok, href: "https://www.tiktok.com/@electric_home2005?_r=1&_t=ZS-952lB9P7ZfY", label: "TikTok" },
@@ -77,13 +79,12 @@ function SocialSidebar({ isHero = false }: { isHero?: boolean }) {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`p-2 rounded-full backdrop-blur-md shadow-lg border hover:scale-110 active:scale-90 transition-transform ${
-                    isNavOpen
+                  className={`p-2 rounded-full backdrop-blur-md shadow-lg border hover:scale-110 active:scale-90 transition-transform ${isNavOpen
                       ? "bg-ink/5 text-ink border-ink/20"
                       : isHero
                         ? "bg-white/10 text-white border-white/20"
                         : "bg-ink/5 text-primary border-ink/10"
-                  }`}
+                    }`}
                   aria-label={social.label}
                 >
                   <social.icon className="w-4 h-4" />

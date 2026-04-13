@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "motion/react";
 import React, { memo } from "react";
 import Footer from "./shared/Footer";
@@ -38,13 +40,13 @@ const mediaItems = [
 
 function MediaBento() {
   return (
-    <section id="media" className="relative min-h-screen w-full bg-white flex flex-col pt-24 md:pt-32 pb-16 md:pb-24">
+    <section id="media" className="relative min-h-screen w-full bg-white flex flex-col pt-24 md:pt-32">
 
       {/* Subtle Warm Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-white to-primary/5 pointer-events-none" />
 
-      <div className="flex-grow flex flex-col items-center justify-center px-6 md:px-20 relative z-10 w-full">
-        <div className="max-w-full w-full flex flex-col">
+      <div className="flex-grow flex flex-col items-center justify-center relative z-10 w-full">
+        <div className="w-full lg:w-[80%] mx-auto flex flex-col px-6 md:px-20">
           <div className="mb-8 md:mb-12">
             <span className="text-primary tracking-[0.4em] font-black block mb-4 uppercase text-[10px]">Nuestro Trabajo</span>
             <h2 className="font-display text-ink leading-[0.9] text-[clamp(2rem,6vw,4.5rem)] uppercase tracking-tighter">

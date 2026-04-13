@@ -1,3 +1,5 @@
+"use client";
+
 import React, { memo } from "react";
 import { motion } from "motion/react";
 import { Instagram, Facebook, ArrowUpRight } from "lucide-react";

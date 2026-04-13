@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "motion/react";
 import React, { memo } from "react";
 import Footer from "./shared/Footer";
@@ -99,13 +101,13 @@ function SpecializedSection() {
   };
 
   return (
-    <section id="specialized" className="relative min-h-[100dvh] w-full bg-white flex flex-col pt-24 md:pt-32 pb-16 md:pb-24">
+    <section id="specialized" className="relative min-h-[100dvh] w-full bg-white flex flex-col pt-24 md:pt-32">
       
       {/* Subtle Warm Gradient instead of grey surface */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-white pointer-events-none" />
 
-      <div className="flex-grow flex flex-col items-center justify-center px-6 md:px-16 relative z-10 w-full">
-        <div className="max-w-[1400px] w-full h-full flex flex-col justify-center">
+      <div className="flex-grow flex flex-col items-center justify-center px-6 md:px-16 relative z-10 w-full pb-20">
+        <div className="w-full lg:w-[80%] mx-auto h-full flex flex-col justify-center">
           
           {/* Header Section */}
           <motion.div 

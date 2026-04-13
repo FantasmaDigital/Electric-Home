@@ -1,3 +1,5 @@
+"use client";
+
 import { motion, AnimatePresence, MotionValue, useMotionValue, useTransform, useSpring } from "motion/react";
 import { Zap, Activity, BarChart3, ShieldCheck, Settings, AlertTriangle, Clock, FastForward } from "lucide-react";
 import React, { useState, useRef, memo } from "react";
@@ -116,10 +118,10 @@ function MaintenanceSection({ x }: MaintenanceSectionProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section id="maintenance" className="min-h-[100dvh] w-full bg-surface relative overflow-y-auto flex flex-col pt-24 md:pt-32 pb-16 md:pb-24">
+    <section id="maintenance" className="min-h-[100dvh] w-full bg-surface relative overflow-y-auto flex flex-col pt-24 md:pt-32">
       <div className="flex-grow flex items-center">
-        <div className="max-w-full mx-auto px-6 md:px-16 text-center w-full">
-          
+        <div className="w-full lg:w-[80%] mx-auto px-6 md:px-16 text-center">
+
           <div className="max-w-4xl mx-auto mb-16 md:mb-20">
             <motion.span
               initial={{ opacity: 0 }}
@@ -139,14 +141,14 @@ function MaintenanceSection({ x }: MaintenanceSectionProps) {
             >
               Su Energía <br /> <span className="text-primary italic">No se Detiene</span>
             </motion.h2>
-            
+
             <p className="text-secondary text-sm md:text-base font-medium max-w-2xl mx-auto">
               Cuidamos sus equipos para que duren más y reparamos fallas rápido para que usted no pierda tiempo ni dinero.
             </p>
           </div>
 
           {/* Emergency / Express Module */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -184,7 +186,7 @@ function MaintenanceSection({ x }: MaintenanceSectionProps) {
                 </button>
                 <button
                   onClick={() => {
-                    const phone = import.meta.env.VITE_PHONE_NUMBER.replace(/\s+/g, '').replace(/-/g, '');
+                    const phone = (process.env.NEXT_PUBLIC_PHONE_NUMBER_ONE || "").replace(/\s+/g, '').replace(/-/g, '');
                     const text = "¡Hola Electric Home! Tengo una *EMERGENCIA ELÉCTRICA* que requiere *ATENCIÓN INMEDIATA*. Por favor, contáctenme prioritariamente.";
                     window.open(`https://wa.me/503${phone}?text=${text}`, '_blank');
                   }}
