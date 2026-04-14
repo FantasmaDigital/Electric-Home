@@ -186,7 +186,7 @@ function MaintenanceSection({ x }: MaintenanceSectionProps) {
                 </button>
                 <button
                   onClick={() => {
-                    const phone = (process.env.NEXT_PUBLIC_PHONE_NUMBER_ONE || "").replace(/\s+/g, '').replace(/-/g, '');
+                    const phone = (process.env.NEXT_PUBLIC_PHONE_NUMBER_ONE || "").replace(/\D/g, '');
                     const text = "¡Hola Electric Home! Tengo una *EMERGENCIA ELÉCTRICA* que requiere *ATENCIÓN INMEDIATA*. Por favor, contáctenme prioritariamente.";
                     window.open(`https://wa.me/503${phone}?text=${text}`, '_blank');
                   }}

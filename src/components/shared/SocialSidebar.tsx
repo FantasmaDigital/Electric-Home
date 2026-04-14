@@ -11,7 +11,7 @@ const TikTok = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const socialLinks = [
-  { icon: MessageCircle, href: `https://wa.me/503${process.env.NEXT_PUBLIC_PHONE_NUMBER_ONE.replace(/\s+/g, '')}`, label: "WhatsApp" },
+  { icon: MessageCircle, href: `https://wa.me/503${(process.env.NEXT_PUBLIC_PHONE_NUMBER_ONE || "").replace(/\D/g, '')}`, label: "WhatsApp" },
   { icon: Facebook, href: "http://facebook.com/electrichomesv/", label: "Facebook" },
   { icon: Instagram, href: "https://www.instagram.com/electrichome4756?igsh=NnBrNDd3dmp0cHg1", label: "Instagram" },
   { icon: TikTok, href: "https://www.tiktok.com/@electric_home2005?_r=1&_t=ZS-952lB9P7ZfY", label: "TikTok" },
