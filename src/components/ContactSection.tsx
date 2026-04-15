@@ -2,8 +2,99 @@
 
 import { motion, AnimatePresence } from "motion/react";
 import React, { useState, useEffect, useRef, memo } from "react";
+import ReactDOM from "react-dom";
 import { Mail, Phone, MapPin, CheckCircle, Clock, ChevronDown, CreditCard, X } from "lucide-react";
 import Footer from "./shared/Footer";
+
+// --- Success Modal rendered via Portal to escape overflow clipping ---
+function SuccessModal({ isOpen, serviceType, onClose }: { isOpen: boolean; serviceType: string; onClose: () => void }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+  if (!mounted) return null;
+
+  const isUrgent = serviceType === 'emergencia_expres';
+
+  return ReactDOM.createPortal(
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          style={{ position: 'fixed', inset: 0, zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}
+        >
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            style={{ position: 'absolute', inset: 0, background: 'rgba(5,5,5,0.85)', backdropFilter: 'blur(24px)' }}
+          />
+
+          {/* Card */}
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+            style={{ position: 'relative', width: '100%', maxWidth: '480px', background: '#fff', padding: '48px', textAlign: 'center', borderRadius: '4px', boxShadow: '0 30px 80px rgba(0,0,0,0.3)' }}
+          >
+            {/* X close button */}
+            <button
+              onClick={onClose}
+              aria-label="Cerrar"
+              style={{ position: 'absolute', top: '16px', right: '16px', width: '36px', height: '36px', borderRadius: '50%', border: 'none', background: 'rgba(5,5,5,0.06)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            >
+              <X size={16} />
+            </button>
+
+            {/* Icon */}
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '24px' }}>
+              <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: 'rgba(255,99,33,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <CheckCircle size={40} style={{ color: '#FF6321' }} />
+              </div>
+            </div>
+
+            {/* Title */}
+            <div style={{ marginBottom: '16px' }}>
+              <span style={{ display: 'block', fontSize: '10px', fontWeight: 900, letterSpacing: '0.35em', textTransform: 'uppercase', color: '#525660', marginBottom: '12px' }}>Solicitud Procesada</span>
+              <h3 style={{ fontFamily: 'var(--font-display, serif)', fontSize: '2.5rem', textTransform: 'uppercase', letterSpacing: '-0.04em', lineHeight: 1, margin: 0, color: '#050505' }}>
+                {isUrgent ? (
+                  <>Despacho <br /><span style={{ color: '#FF6321', fontStyle: 'italic' }}>Activado</span></>
+                ) : (
+                  <>Evaluaci&oacute;n <br /><span style={{ color: '#FF6321', fontStyle: 'italic' }}>Confirmada</span></>
+                )}
+              </h3>
+              <div style={{ width: '48px', height: '2px', background: '#FF6321', margin: '16px auto 0' }} />
+            </div>
+
+            {/* Body */}
+            <p style={{ color: '#525660', fontSize: '14px', lineHeight: 1.7, marginBottom: '24px' }}>
+              {isUrgent
+                ? 'Nuestra cuadrilla de respuesta inmediata ha sido notificada. Un técnico se pondrá en contacto en los próximos minutos.'
+                : 'Su requerimiento ha sido asignado a nuestro equipo de ingeniería. En las próximas 24 horas laborables recibirá los detalles para la visita técnica.'}
+            </p>
+
+            {/* Tracking code */}
+            <div style={{ paddingTop: '16px', borderTop: '1px solid rgba(5,5,5,0.06)', marginBottom: '24px' }}>
+              <span style={{ display: 'block', fontSize: '9px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.3em', color: 'rgba(82,86,96,0.4)', marginBottom: '4px' }}>CÓDIGO DE SEGUIMIENTO</span>
+              <span style={{ fontSize: '11px', fontFamily: 'monospace', fontWeight: 700, color: '#050505' }}>REQ-{Math.random().toString(36).substring(7).toUpperCase()}</span>
+            </div>
+
+            {/* CTA */}
+            <button
+              onClick={onClose}
+              style={{ width: '100%', padding: '20px', background: isUrgent ? '#FF6321' : '#050505', color: '#fff', border: 'none', fontSize: '10px', fontWeight: 900, letterSpacing: '0.35em', textTransform: 'uppercase', cursor: 'pointer', borderRadius: '2px' }}
+            >
+              Volver al Sitio
+            </button>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>,
+    document.body
+  );
+}
 
 const serviceOptions = [
   { id: "mantenimiento", label: "Mantenimiento Preventivo", category: "Mantenimiento" },
@@ -400,78 +491,14 @@ function ContactSection() {
 
         </div>
 
-        <AnimatePresence>
-          {isSubmitted && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[3000] flex items-center justify-center p-6"
-            >
-              <motion.div
-                initial={{ backdropFilter: "blur(0px)", opacity: 0 }}
-                animate={{ backdropFilter: "blur(32px)", opacity: 1 }}
-                exit={{ backdropFilter: "blur(0px)", opacity: 0 }}
-                className="absolute inset-0 bg-ink/80"
-              />
-
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0, y: 20 }}
-                animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                className="relative w-full max-w-lg bg-white p-12 text-center space-y-8 rounded-sm shadow-2xl"
-              >
-                {/* Close Button */}
-                <button
-                  onClick={() => setIsSubmitted(false)}
-                  className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full bg-ink/5 hover:bg-ink/10 text-secondary hover:text-ink transition-all"
-                  aria-label="Cerrar"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-
-                <div className="flex justify-center">
-                  <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center">
-                    <CheckCircle className="text-primary w-10 h-10" />
-                  </div>
-                </div>
-
-                <div className="space-y-3">
-                  <span className="text-secondary font-black uppercase tracking-[0.4em] text-[10px]">Solicitud Procesada</span>
-                  <h3 className="font-display text-ink text-4xl uppercase tracking-tighter leading-none">
-                    {submittedServiceType === 'emergencia_expres' ? (
-                      <>Despacho <br /><span className="text-primary italic">Activado</span></>
-                    ) : (
-                      <>Evaluación <br /><span className="text-primary italic">Confirmada</span></>
-                    )}
-                  </h3>
-                  <div className="w-12 h-[2px] bg-primary mx-auto" />
-                </div>
-
-                <p className="text-secondary text-sm font-medium leading-relaxed">
-                  {submittedServiceType === 'emergencia_expres'
-                    ? "Nuestra cuadrilla de respuesta inmediata ha sido notificada. Un técnico se pondrá en contacto en los próximos minutos."
-                    : "Su requerimiento ha sido asignado a nuestro equipo de ingeniería. En las próximas 24 horas laborables recibirá los detalles para la visita técnica."
-                  }
-                </p>
-
-                <div className="pt-4 border-t border-ink/5">
-                  <span className="text-[9px] uppercase font-black text-secondary/40 tracking-widest block mb-1">CÓDIGO DE SEGUIMIENTO</span>
-                  <span className="text-[10px] font-mono text-ink font-bold">REQ-{Math.random().toString(36).substring(7).toUpperCase()}</span>
-                </div>
-
-                <button
-                  onClick={() => setIsSubmitted(false)}
-                  className={`w-full ${submittedServiceType === 'emergencia_expres' ? 'bg-primary' : 'bg-ink'} text-white py-5 text-[10px] font-black uppercase tracking-[0.4em] hover:opacity-90 transition-all active:scale-95 shadow-xl`}
-                >
-                  Volver al Sitio
-                </button>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
       <Footer />
+      {/* Portal modal — rendered at document.body to escape overflow clipping */}
+      <SuccessModal
+        isOpen={isSubmitted}
+        serviceType={submittedServiceType}
+        onClose={() => setIsSubmitted(false)}
+      />
     </section>
   );
 }
