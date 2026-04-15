@@ -14,6 +14,15 @@ export async function POST(request: Request) {
       );
     }
 
+    // Ensure admin email is configured
+    if (!process.env.EMAIL_ADMIN) {
+      console.error('EMAIL_ADMIN env variable is not set.');
+      return NextResponse.json(
+        { error: 'Error de configuración del servidor. Contacte al administrador.' },
+        { status: 500 }
+      );
+    }
+
     // Send emails
     await sendContactEmails({
       name,

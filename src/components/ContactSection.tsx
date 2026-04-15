@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "motion/react";
 import React, { useState, useEffect, useRef, memo } from "react";
-import { Mail, Phone, MapPin, FileText, CheckCircle, AlertCircle, Clock, ChevronDown, CreditCard } from "lucide-react";
+import { Mail, Phone, MapPin, CheckCircle, Clock, ChevronDown, CreditCard, X } from "lucide-react";
 import Footer from "./shared/Footer";
 
 const serviceOptions = [
@@ -96,6 +96,7 @@ function ContactSection() {
     message: ""
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submittedServiceType, setSubmittedServiceType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
@@ -136,6 +137,8 @@ function ContactSection() {
       });
 
       if (response.ok) {
+        // Snapshot the serviceType BEFORE resetting the form
+        setSubmittedServiceType(formState.serviceType);
         setIsSubmitted(true);
         // Reset form after success
         setFormState({
@@ -418,26 +421,35 @@ function ContactSection() {
                 exit={{ scale: 0.9, opacity: 0, y: 20 }}
                 className="relative w-full max-w-lg bg-white p-12 text-center space-y-8 rounded-sm shadow-2xl"
               >
+                {/* Close Button */}
+                <button
+                  onClick={() => setIsSubmitted(false)}
+                  className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full bg-ink/5 hover:bg-ink/10 text-secondary hover:text-ink transition-all"
+                  aria-label="Cerrar"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+
                 <div className="flex justify-center">
-                  <div className={`w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center`}>
-                    <CheckCircle className={`text-primary w-10 h-10`} />
+                  <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center">
+                    <CheckCircle className="text-primary w-10 h-10" />
                   </div>
                 </div>
 
                 <div className="space-y-3">
                   <span className="text-secondary font-black uppercase tracking-[0.4em] text-[10px]">Solicitud Procesada</span>
                   <h3 className="font-display text-ink text-4xl uppercase tracking-tighter leading-none">
-                    {formState.serviceType === 'emergencia_expres' ? (
+                    {submittedServiceType === 'emergencia_expres' ? (
                       <>Despacho <br /><span className="text-primary italic">Activado</span></>
                     ) : (
                       <>Evaluación <br /><span className="text-primary italic">Confirmada</span></>
                     )}
                   </h3>
-                  <div className={`w-12 h-[2px] bg-primary mx-auto`} />
+                  <div className="w-12 h-[2px] bg-primary mx-auto" />
                 </div>
 
                 <p className="text-secondary text-sm font-medium leading-relaxed">
-                  {formState.serviceType === 'emergencia_expres'
+                  {submittedServiceType === 'emergencia_expres'
                     ? "Nuestra cuadrilla de respuesta inmediata ha sido notificada. Un técnico se pondrá en contacto en los próximos minutos."
                     : "Su requerimiento ha sido asignado a nuestro equipo de ingeniería. En las próximas 24 horas laborables recibirá los detalles para la visita técnica."
                   }
@@ -450,7 +462,7 @@ function ContactSection() {
 
                 <button
                   onClick={() => setIsSubmitted(false)}
-                  className={`w-full ${formState.serviceType === 'emergencia_expres' ? 'bg-primary' : 'bg-ink'} text-white py-5 text-[10px] font-black uppercase tracking-[0.4em] hover:opacity-90 transition-all active:scale-95 shadow-xl`}
+                  className={`w-full ${submittedServiceType === 'emergencia_expres' ? 'bg-primary' : 'bg-ink'} text-white py-5 text-[10px] font-black uppercase tracking-[0.4em] hover:opacity-90 transition-all active:scale-95 shadow-xl`}
                 >
                   Volver al Sitio
                 </button>
